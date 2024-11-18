@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_text.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 
 class InfoCard extends StatelessWidget {
   final String? title;

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_form_field.dart';
+import 'package:tranquil_admin_portal/core/global/custom_form_field.dart';
 import 'package:tranquil_admin_portal/core/utils/services/validators.dart';
 import 'package:tranquil_admin_portal/features/auth/presentation/controllers/auth_controller.dart';
 

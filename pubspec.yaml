@@ -34,6 +34,11 @@ dependencies:
   get: any #state management, dependency injection and GetMaterial widgets
   get_storage: ^2.0.3 #Local cache
 
+  connectivity_plus: ^6.1.0
+  dartz: ^0.10.1
+  dio: ^5.3.2
+  flutter_pretty_dio_logger:
+
   google_fonts: ^4.0.3 #allows you to easily use any of the 977 fonts (and their variants) from fonts.google.com in your Flutter app.
   flutter_svg: ^1.1.5
   syncfusion_flutter_charts: ^23.1.39

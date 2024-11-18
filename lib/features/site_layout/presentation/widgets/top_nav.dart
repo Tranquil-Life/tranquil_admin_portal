@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_strings.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_text.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/responsiveness.dart';
 
 AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key, String username) =>

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_card_item.dart';
 
 class InfoCardsLargeScreen extends StatelessWidget {
