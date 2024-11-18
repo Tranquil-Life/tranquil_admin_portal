@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_text.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/features/dashboard/data/models/growth_model.dart';
 
 class OverviewCard extends StatelessWidget {
@@ -28,14 +27,8 @@ class OverviewCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Row(
-            children: [
-              CustomText(
-                text: "Project growth - $growth%",
-              ),
-
-              //..
-            ],
+          CustomText(
+            text: "Project growth - $growth%",
           ),
 
           SfCartesianChart(

@@ -1,3 +1,44 @@
-const String welcomeBackDesc = "";
-const String loginTitle = "";
-const String rememberMeDesc = "";
+class AppStrings{
+  static const appLogo = "assets/images/tranquil_life_logo.png";
+  static const String appName = "Tranquil Life";
+
+  static const String loginTitle = "Login";
+  static const String welcomeBackMsg = "Welcome back to the admin panel.";
+  static const String emailTitle = "Email";
+  static const String emailPlaceHolder = "abc@domain.com";
+  static const String passwordTitle = "Password";
+  static const String pwdPlaceHolder = "Enter password";
+  static const String rememberMeMsg = "Remember Me";
+  static const String forgotPwdMsg = "Forgot password?";
+
+  static const String dashboardTitle = "Dashboard";
+  static const String meetingsTitle = "Meetings";
+  static const String usersTitle = "Users";
+  static const String therapistsTitle = "Therapists";
+  static const String businessesTitle = "Businesses";
+  static const String analyticsTitle = "Analytics";
+  static const String settingsTitle = "Settings";
+  static const String supportTitle = "Help & support";
+  static const String logOutTitle = "Log out";
+
+  static const String completedSessionsTitle = "Dashboard";
+  static const String activeAccountsTitle = "Active accounts";
+  static const String registeredUsersTitle = "Registered Users";
+  static const String lastQuarterTitle = "Last quarter";
+  static const String overviewTitle = "Overview";
+  static const String revenueTitle = "Revenue";
+  static const String sessionPaymentsTitle = "Session payments";
+  static const String subscriptionsTitle = "Subscriptions";
+
+  static const String moodTrackingTitle = 'Mood tracking';
+  static const String todayTitle = 'Today';
+  static const String userTrackingMoodMsg = 'Users tracking their mood:';
+  static const String totalMoodsTrackedMsg = 'Total moods tracked:';
+  static const String journalDataTitle = 'Total moods tracked:';
+  static const String regularEntriesMsg = 'Regular entries';
+  static const String entriesUsedInSessionsMsg = 'Entries used in sessions';
+  static const String entriesCreatedMsg = 'Total journal entries created';
+  static const String affirmationsTitle = 'Affirmations';
+  static const String affirmsShared = 'Affirmations shared';
+  static const String affirmsRead = 'Affirmations read';
+}

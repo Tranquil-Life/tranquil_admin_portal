@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_text.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/responsiveness.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/dashboard_controller.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/app_installs/app_installs_card.dart';
@@ -29,7 +29,7 @@ class _DashboardState extends State<Dashboard> {
         children: [
           //Current page title
           Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                   top: 80, bottom: 20),
               alignment: Alignment.centerLeft,
               child: CustomText(
@@ -64,7 +64,7 @@ class _DashboardState extends State<Dashboard> {
                             Container(
                               margin: EdgeInsets.only(bottom: 8),
                               alignment: Alignment.centerLeft,
-                              child: Wrap(
+                              child: const Wrap(
                                 direction: Axis.horizontal,
                                 children: [
                                   CustomText(

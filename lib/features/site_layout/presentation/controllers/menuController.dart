@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.dart';
 
 class MenController extends GetxController{
