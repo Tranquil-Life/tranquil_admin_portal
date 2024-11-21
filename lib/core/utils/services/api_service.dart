@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
+import 'package:tranquil_admin_portal/core/constants/endpoints.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store_keys.dart';
 import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
@@ -57,21 +58,26 @@ class ApiService {
   }
 
   Map<String, String> _getHeaders() {
+    var authToken = '';
+    if (userDataStore.user.isNotEmpty &&
+        UserModel.fromJson(userDataStore.user).authToken.isNotEmpty) {
+      authToken = UserModel.fromJson(userDataStore.user).authToken;
+    }
+
     return {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${UserModel.fromJson(userDataStore.user).authToken}',
+      'Authorization': 'Bearer $authToken',
     };
   }
 
   Future<Either<ApiError, dynamic>> handleResponse(
       Either<ApiError, dynamic> eitherResponse) async {
     return eitherResponse.fold(
-          (apiError) {
-
+      (apiError) {
         return Left(apiError);
       },
-          (data) {
+      (data) {
         return Right(data);
       },
     );
@@ -83,12 +89,11 @@ class ApiService {
       return await function();
     } on DioException catch (error) {
       var message = error.response;
-      if(!message?.data.containsKey("message")){
+      if (!message?.data.containsKey("message")) {
         return Left(ApiError(message: message?.data));
-      }else{
+      } else {
         return Left(ApiError(message: message?.data['message']));
       }
-
     } catch (e) {
       return Left(ApiError(message: e.toString()));
     }
@@ -107,6 +112,15 @@ class ApiService {
     }
   }
 
+  Future<Either<ApiError, dynamic>> postReq(String url, {dynamic body}) async {
+    final headers = _getHeaders();
+
+    Response response = await dio.post(url, data: body);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return Right(response.data);
+    } else {
+      return Left(ApiError(message: response.data['message']));
+    }
+  }
 }
-
-

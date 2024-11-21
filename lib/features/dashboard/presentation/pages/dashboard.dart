@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/responsiveness.dart';
@@ -64,29 +65,21 @@ class _DashboardState extends State<Dashboard> {
                             Container(
                               margin: EdgeInsets.only(bottom: 8),
                               alignment: Alignment.centerLeft,
-                              child: const Wrap(
+                              child: Wrap(
                                 direction: Axis.horizontal,
-                                children: [
-                                  CustomText(
-                                    text: "Overview",
-                                    size: 20,
-                                    weight: FontWeight.w600,
-                                    color: AppColors.black,
-                                  ),
-                                  SizedBox(width: 45),
-                                  CustomText(
-                                    text: "Revenue",
-                                    size: 20,
-                                    weight: FontWeight.normal,
-                                    color: AppColors.grey,
-                                  ),
-                                ],
+                                children: dashboardController.overviewTypes.map((e)=>Padding(padding: EdgeInsets.only(right: 45), child: CustomText(
+                                  text: e,
+                                  size: 20,
+                                  weight: dashboardController.overviewIndex.value == dashboardController.overviewTypes.indexOf(e) ? FontWeight.w600 : FontWeight.normal,
+                                  color: AppColors.black,
+                                ))).toList()
                               ),
                             ),
                             OverviewCard(
-                              growth: 79,
+                              growth: 0,
                               data: dashboardController.growthData,
                               filterType: "Last quarter",
+                              increased: false,
                             )
                           ],
                         ),

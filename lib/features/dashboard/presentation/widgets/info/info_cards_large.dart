@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tranquil_admin_portal/core/constants/svg_paths.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_card_item.dart';
 
@@ -13,7 +14,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         InfoCard(
           title: "Completed sessions",
           value: 567,
-          iconPath: 'assets/images/icons/completed_session_icon.svg',
+          iconPath: SvgPaths.clockIcon,
           difference: 447,
           trendIcon: Icons.trending_up,
           trendIconColor: AppColors.green,
@@ -22,16 +23,16 @@ class InfoCardsLargeScreen extends StatelessWidget {
         InfoCard(
           title: "Active accounts",
           value: 44667,
-          iconPath: 'assets/images/icons/completed_session_icon.svg',
+          iconPath: SvgPaths.peopleIcon,
           difference: 44554,
           trendIcon: Icons.trending_down,
           trendIconColor: AppColors.red,
           onTap: () {},
         ),
         InfoCard(
-          title: "Consultants",
+          title: "Therapists",
           value: 67,
-          iconPath: 'assets/images/icons/completed_session_icon.svg',
+          iconPath: SvgPaths.personBlueIcon,
           difference: 42,
           trendIcon: Icons.trending_up,
           trendIconColor: AppColors.green,
@@ -40,7 +41,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         InfoCard(
           title: "Businesses",
           value: 24,
-          iconPath: 'assets/images/icons/completed_session_icon.svg',
+          iconPath: SvgPaths.personBlueIcon,
           difference: 42,
           trendIcon: Icons.trending_up,
           trendIconColor: AppColors.green,
@@ -49,7 +50,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         InfoCard(
           title: "Registered Users",
           value: 4667,
-          iconPath: 'assets/images/icons/completed_session_icon.svg',
+          iconPath: SvgPaths.personBlueIcon,
           difference: 4667,
           trendIcon: Icons.arrow_right_alt,
           trendIconColor: AppColors.grey,

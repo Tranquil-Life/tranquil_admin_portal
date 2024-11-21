@@ -1,6 +1,7 @@
 class GrowthData{
-  GrowthData(this.year, this.growth);
+  GrowthData(this.month, this.growth, this.type);
 
-  final String year;
+  final String month;
+  final String type;
   final double growth;
 }
