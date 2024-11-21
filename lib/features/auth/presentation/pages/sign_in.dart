@@ -89,13 +89,10 @@ class _SignInState extends State<SignIn> {
                 height: 15,
               ),
               InkWell(
-                onTap: (){
-                  throw Exception('This is test exception');
+                onTap: () async{
+                  // throw Exception('This is test exception');
 
-                  // Get.to(SiteLayout());
-                  /*authController.login(
-                      authController.emailTEC.text,
-                      authController.passwordTEC.text);*/
+                  await authController.login();
                 },
                 child: Container(
                   decoration: BoxDecoration(color: AppColors.green,

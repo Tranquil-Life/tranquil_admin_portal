@@ -25,10 +25,11 @@ class AppStrings{
   static const String activeAccountsTitle = "Active accounts";
   static const String registeredUsersTitle = "Registered Users";
   static const String lastQuarterTitle = "Last quarter";
-  static const String overviewTitle = "Overview";
-  static const String revenueTitle = "Revenue";
+  static const String subscriptionOverviewTitle = "Subscription overview";
+  static const String revenueOverviewTitle = "Revenue overview";
   static const String sessionPaymentsTitle = "Session payments";
   static const String subscriptionsTitle = "Subscriptions";
+  static const String userSubscriptions = "User subscriptions";
 
   static const String moodTrackingTitle = 'Mood tracking';
   static const String todayTitle = 'Today';
