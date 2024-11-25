@@ -23,7 +23,6 @@ class InfoCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          margin: EdgeInsets.only(right: 24),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.white,

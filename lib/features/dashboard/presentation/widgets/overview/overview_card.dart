@@ -12,7 +12,8 @@ class OverviewCard extends StatelessWidget {
   final String? filterType;
   final bool? increased;
 
-  const OverviewCard({super.key, this.growth, this.data, this.filterType, this.increased});
+  const OverviewCard(
+      {super.key, this.growth, this.data, this.filterType, this.increased});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class OverviewCard extends StatelessWidget {
       height: 400,
       decoration: BoxDecoration(
         color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
               offset: Offset(0, 6),
@@ -42,18 +44,30 @@ class OverviewCard extends StatelessWidget {
                     children: [
                       const CustomText(
                         text: AppStrings.userSubscriptions,
+                        size: 16,
                       ),
                       CustomText(
                         text: " - $growth%",
                         weight: FontWeight.bold,
+                        size: 18,
                       ),
-                      Icon(increased! ? Icons.trending_up : Icons.trending_down, color:increased! ? AppColors.green : AppColors.red,)
+                      Icon(increased! ? Icons.trending_up : Icons.trending_down,
+                          color: increased! ? AppColors.green : AppColors.red)
+                    ],
+                  ),
+                  Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      CustomText(
+                        text: AppStrings.lastYearTitle,
+                      ),
                     ],
                   )
                 ],
               )),
           Expanded(
-            child: StackedAreaChart(),
+            child: SubscriptionRevChart(),
           )
         ],
       ),

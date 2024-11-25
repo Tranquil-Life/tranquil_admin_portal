@@ -11,9 +11,6 @@ class InstallsChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return SfCartesianChart(
         primaryXAxis: CategoryAxis(),
-        // Chart title
-        //title: ChartTitle(text: 'A break down of the installation data o the tranquil life app'),
-        // Enable legend
         legend: const Legend(isVisible: true),
         // Enable tooltip
         tooltipBehavior: TooltipBehavior(enable: true),
@@ -25,6 +22,7 @@ class InstallsChart extends StatelessWidget {
               name: 'Installs',
               onCreateRenderer: (ChartSeries<AppInstalls, String> series) =>
                   _CustomColumnSeriesRenderer(),
+        isVisibleInLegend: false,
               // Enable data label
               dataLabelSettings: DataLabelSettings(isVisible: true))
         ]);
