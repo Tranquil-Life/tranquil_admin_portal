@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 
-class StackedAreaChart extends StatelessWidget {
-  const StackedAreaChart({super.key});
+class SubscriptionRevChart extends StatelessWidget {
+  const SubscriptionRevChart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class StackedAreaChart extends StatelessWidget {
             dataSource: _getChartData(),
             xValueMapper: (ChartData data, _) => data.month,
             yValueMapper: (ChartData data, _) => data.revenue1,
-            name: 'Revenue 1',
-            color: Color(0xffC0E2C9),
+            name: AppStrings.weeklyTitle,
+            color: AppColors.yellow,
             markerSettings: MarkerSettings(
               isVisible: true,
-              color: Color(0xffC0E2C9),
+              color: AppColors.yellow,
               shape: DataMarkerType.circle,
               width: 6,
               height: 6,
@@ -32,10 +34,10 @@ class StackedAreaChart extends StatelessWidget {
             xValueMapper: (ChartData data, _) => data.month,
             yValueMapper: (ChartData data, _) => data.revenue2,
             name: 'Revenue 2',
-            color: Color(0xff62B778),
+            color: AppColors.darkGreen,
             markerSettings: MarkerSettings(
               isVisible: true,
-              color: Color(0xff62B778),
+              color: AppColors.darkGreen,
               shape: DataMarkerType.circle,
               width: 6,
               height: 6,
@@ -45,10 +47,10 @@ class StackedAreaChart extends StatelessWidget {
             xValueMapper: (ChartData data, _) => data.month,
             yValueMapper: (ChartData data, _) => data.revenue3,
             name: 'Revenue 3',
-            color: Color(0xff2D713E),
+            color: AppColors.blue,
             markerSettings: MarkerSettings(
               isVisible: true,
-              color: Color(0xff2D713E),
+              color: AppColors.blue,
               shape: DataMarkerType.circle,
               width: 6,
               height: 6,

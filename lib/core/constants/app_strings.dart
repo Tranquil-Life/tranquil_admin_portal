@@ -32,14 +32,30 @@ class AppStrings{
   static const String userSubscriptions = "User subscriptions";
 
   static const String moodTrackingTitle = 'Mood tracking';
-  static const String todayTitle = 'Today';
   static const String userTrackingMoodMsg = 'Users tracking their mood:';
   static const String totalMoodsTrackedMsg = 'Total moods tracked:';
-  static const String journalDataTitle = 'Total moods tracked:';
+  static const String journalDataTitle = 'Journal data';
   static const String regularEntriesMsg = 'Regular entries';
   static const String entriesUsedInSessionsMsg = 'Entries used in sessions';
   static const String entriesCreatedMsg = 'Total journal entries created';
   static const String affirmationsTitle = 'Affirmations';
-  static const String affirmsShared = 'Affirmations shared';
-  static const String affirmsRead = 'Affirmations read';
+  static const String affirmsSharedTitle = 'Affirmations shared';
+  static const String affirmsReadTitle = 'Affirmations read';
+  static const String appInstallDataTitle = 'App install data';
+  static const String featureStatsTitle = 'Feature stats';
+
+  static const String lastMonthTitle = 'Last month';
+  static const String lastYearTitle = 'Last year';
+  static const String todayTitle = 'Today';
+
+  static const String weeklyTitle = "Weekly";
+  static const String monthlyTitle = "Monthly";
+  static const String yearlyTitle = "Yearly";
+
+  static const String moodsTitle = "moods";
+
+  static const String totalEntriesMsg = "Total journal entries created";
+
+  static const String topicsWithMiraTitle = 'Top topics with Mira';
+
 }

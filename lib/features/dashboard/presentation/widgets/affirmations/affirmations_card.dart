@@ -3,10 +3,9 @@ import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/size_helpers.dart';
-import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/mood_tracking/mood_chart.dart';
 
-class MoodTrackingCard extends StatelessWidget {
-  const MoodTrackingCard({Key? key}) : super(key: key);
+class AffirmationsCard extends StatelessWidget {
+  const AffirmationsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +23,11 @@ class MoodTrackingCard extends StatelessWidget {
           )
         ],),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText(text: AppStrings.moodTrackingTitle, weight: FontWeight.w600,),
+              const CustomText(text: AppStrings.affirmationsTitle, weight: FontWeight.w600,),
               GestureDetector(
                 child: Wrap(
                   direction: Axis.horizontal,
@@ -43,21 +41,38 @@ class MoodTrackingCard extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 16),
+          SizedBox(height: 24),
 
-          MoodChart(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(text: AppStrings.affirmsSharedTitle, size: 12,),
+                  CustomText(text: '0', weight: FontWeight.bold, size: 18),
+                ],
+              ),
 
-          Align(
-            alignment: Alignment.center,
-            child: CustomText(
-              text: AppStrings.userTrackingMoodMsg+" 0",
-              color: AppColors.grey,
-              weight: FontWeight.w600,
-            ),
-          )
+              Container(
+                width: 1,
+                height: 25,
+                margin: EdgeInsets.symmetric(horizontal: 17),
+                color: AppColors.grey,
+              ),
+
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(text: AppStrings.affirmsReadTitle, size: 12,),
+                  CustomText(text: '0', weight: FontWeight.bold, size: 18,),
+                ],
+              )
+            ],
+          ),
 
         ],
-      )
+      ),
     );
   }
 }

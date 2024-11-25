@@ -20,6 +20,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
           trendIconColor: AppColors.green,
           onTap: () {},
         ),
+        SizedBox(width: 24),
         InfoCard(
           title: "Active accounts",
           value: 44667,
@@ -29,6 +30,8 @@ class InfoCardsLargeScreen extends StatelessWidget {
           trendIconColor: AppColors.red,
           onTap: () {},
         ),
+        SizedBox(width: 24),
+
         InfoCard(
           title: "Therapists",
           value: 67,
@@ -38,6 +41,8 @@ class InfoCardsLargeScreen extends StatelessWidget {
           trendIconColor: AppColors.green,
           onTap: () {},
         ),
+        SizedBox(width: 24),
+
         InfoCard(
           title: "Businesses",
           value: 24,
@@ -47,6 +52,8 @@ class InfoCardsLargeScreen extends StatelessWidget {
           trendIconColor: AppColors.green,
           onTap: () {},
         ),
+        SizedBox(width: 24),
+
         InfoCard(
           title: "Registered Users",
           value: 4667,
