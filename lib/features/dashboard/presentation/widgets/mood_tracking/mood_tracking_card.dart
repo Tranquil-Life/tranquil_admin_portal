@@ -35,7 +35,7 @@ class MoodTrackingCard extends StatelessWidget {
                   direction: Axis.horizontal,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    CustomText(text: AppStrings.todayTitle),
+                    CustomText(text: AppStrings.todayTitle, size: 12),
                     Icon(Icons.keyboard_arrow_down),
                   ],
                 ),

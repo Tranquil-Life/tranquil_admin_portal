@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/features/auth/presentation/pages/sign_in.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/pages/dashboard.dart';
 import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/site_layout.dart';
+import 'package:tranquil_admin_portal/features/therapists/presentation/pages/therapists_page.dart';
 
 abstract class AppPages{
   AppPages._();
@@ -19,7 +21,7 @@ abstract class AppPages{
 
   static final List<Widget> menuPages = [
     const Dashboard(),
-    // const ConsultantsPage(),
+    const TherapistsPage(),
   ];
 
 }
@@ -29,8 +31,8 @@ Route<dynamic> generateRoute(RouteSettings settings){
   switch (settings.name) {
     case Routes.dashboardRoute:
       return _getPageRoute(Dashboard());
-    // case consultantsPageRoute:
-    //   return _getPageRoute(ConsultantsPage());
+    case Routes.therapistsPageRoute:
+      return _getPageRoute(TherapistsPage());
     // case clientsPageRoute:
     //   return _getPageRoute(ClientsPage());
     // case partnersPageRoute:
@@ -51,10 +53,13 @@ abstract class Routes{
 
   Routes._();
 
-  static const dashboardDisplayName = "Dashboard";
+  static const dashboardDisplayName = AppStrings.dashboardTitle;
   static const dashboardRoute = "/dashboard";
 
-  static const authenticationPageDisplayName = "Log out";
+  static const therapistsDisplayName = AppStrings.therapistsTitle;
+  static const therapistsPageRoute = "/therapists";
+
+  static const authenticationPageDisplayName = AppStrings.logOutTitle;
   static const authenticationPageRoute = "/auth";
 
   static const rootRoute = "/";
@@ -72,6 +77,7 @@ class MenuItem {
 List<MenuItem> sideMenuItemRoutes =
 [
   MenuItem(Routes.dashboardDisplayName, Routes.dashboardRoute),
+  MenuItem(Routes.therapistsDisplayName, Routes.therapistsPageRoute),
   MenuItem(Routes.authenticationPageDisplayName, Routes.authenticationPageRoute)
 ];
 

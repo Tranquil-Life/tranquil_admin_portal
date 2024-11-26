@@ -27,6 +27,7 @@ class AppStrings{
   static const String lastQuarterTitle = "Last quarter";
   static const String subscriptionOverviewTitle = "Subscription overview";
   static const String revenueOverviewTitle = "Revenue overview";
+  static const String revenueTitle = 'Revenue';
   static const String sessionPaymentsTitle = "Session payments";
   static const String subscriptionsTitle = "Subscriptions";
   static const String userSubscriptions = "User subscriptions";
@@ -43,6 +44,8 @@ class AppStrings{
   static const String affirmsReadTitle = 'Affirmations read';
   static const String appInstallDataTitle = 'App install data';
   static const String featureStatsTitle = 'Feature stats';
+  static const String moodsTitle = "moods";
+  static const String totalEntriesMsg = "Total journal entries created";
 
   static const String lastMonthTitle = 'Last month';
   static const String lastYearTitle = 'Last year';
@@ -52,10 +55,14 @@ class AppStrings{
   static const String monthlyTitle = "Monthly";
   static const String yearlyTitle = "Yearly";
 
-  static const String moodsTitle = "moods";
-
-  static const String totalEntriesMsg = "Total journal entries created";
-
   static const String topicsWithMiraTitle = 'Top topics with Mira';
 
+  static const String allTherapistsTitle = 'All Therapists';
+  static const String agencyBasedTherapistsTitle = 'Agency-based Therapists';
+  static const String soloTherapistsTitle = 'Solo practitioners';
+  static const String therapistsInSessionTitle = 'Therapists in session';
+  static const String exportDataMsg = 'Export data';
+  static const String addTherapistMsg = 'Add therapist';
+
+  static const String therapistsTableMsg = 'Manage therapist’s accounts';
 }

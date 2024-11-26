@@ -23,6 +23,7 @@ class _TopicsCardState extends State<TopicsCard> {
   Widget build(BuildContext context) {
     return Container(
         width: displayWidth(context),
+        padding: EdgeInsets.only(left: 20, right: 20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
@@ -33,66 +34,64 @@ class _TopicsCardState extends State<TopicsCard> {
                 blurRadius: 12)
           ],
         ),
-        child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Column(
-              children: [
-                SizedBox(height: 24),
+        child: Column(
+          children: [
+            SizedBox(height: 24),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(text: AppStrings.topicsWithMiraTitle, weight: FontWeight.w600, size: 18,),
-                    GestureDetector(
-                      child: Wrap(
-                        direction: Axis.horizontal,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          CustomText(text: AppStrings.lastMonthTitle, size: 12),
-                          Icon(Icons.keyboard_arrow_down),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 24),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 2, vertical: 11.5),
-                  decoration: BoxDecoration(
-                      border:
-                          Border.all(color: AppColors.grey.withOpacity(.3))),
-                  child: Table(
-                    columnWidths: const {
-                      0: FixedColumnWidth(
-                          50), // Fixed width for the first column
-                      1: FlexColumnWidth(), // Flexible width for the second column
-                      2: FlexColumnWidth(), // Flexible width for the third column
-                      3: FixedColumnWidth(
-                          50), // Fixed width for the last column
-                    },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText(text: AppStrings.topicsWithMiraTitle, weight: FontWeight.w600, size: 18,),
+                GestureDetector(
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      TableRow(
-                          children: columnsArray
-                              .map(
-                                (e) => Center(
-                                  // Center the header text
-                                  child: CustomText(
-                                    text: e.toUpperCase(),
-                                    size: 12,
-                                  ),
-                                ),
-                              )
-                              .toList())
+                      CustomText(text: AppStrings.lastMonthTitle, size: 12),
+                      Icon(Icons.keyboard_arrow_down),
                     ],
                   ),
-                ),
-                SizedBox(height: 11.5),
-                Column(
-                  children: topics.map((e) => TopicItem(item: e)).toList(),
-                ),
-                SizedBox(height: 20),
+                )
               ],
-            )));
+            ),
+            SizedBox(height: 24),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 2, vertical: 11.5),
+              decoration: BoxDecoration(
+                  border:
+                  Border.all(color: AppColors.grey.withOpacity(.3))),
+              child: Table(
+                columnWidths: const {
+                  0: FixedColumnWidth(
+                      50), // Fixed width for the first column
+                  1: FlexColumnWidth(), // Flexible width for the second column
+                  2: FlexColumnWidth(), // Flexible width for the third column
+                  3: FixedColumnWidth(
+                      50), // Fixed width for the last column
+                },
+                children: [
+                  TableRow(
+                      children: columnsArray
+                          .map(
+                            (e) => Center(
+                          // Center the header text
+                          child: CustomText(
+                            text: e.toUpperCase(),
+                            size: 12,
+                          ),
+                        ),
+                      )
+                          .toList())
+                ],
+              ),
+            ),
+            SizedBox(height: 11.5),
+            Column(
+              children: topics.map((e) => TopicItem(item: e)).toList(),
+            ),
+            SizedBox(height: 20),
+          ],
+        ));
   }
 }
 

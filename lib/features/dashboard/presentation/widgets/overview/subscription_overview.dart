@@ -4,15 +4,15 @@ import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/features/dashboard/data/models/growth_model.dart';
-import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/subscription_revenue_chart.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/subscription_overview_chart.dart';
 
-class OverviewCard extends StatelessWidget {
+class SubscriptionOverview extends StatelessWidget {
   final int? growth;
   final List<GrowthData>? data;
   final String? filterType;
   final bool? increased;
 
-  const OverviewCard(
+  const SubscriptionOverview(
       {super.key, this.growth, this.data, this.filterType, this.increased});
 
   @override
@@ -34,7 +34,7 @@ class OverviewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -55,20 +55,69 @@ class OverviewCard extends StatelessWidget {
                           color: increased! ? AppColors.green : AppColors.red)
                     ],
                   ),
-                  Wrap(
+                  Flexible(child: Wrap(
                     direction: Axis.horizontal,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      CustomText(
-                        text: AppStrings.lastYearTitle,
-                      ),
+                      CustomText(text: AppStrings.lastYearTitle, size: 12),
+                      Icon(Icons.keyboard_arrow_down),
                     ],
-                  )
+                  ))
                 ],
               )),
           Expanded(
-            child: SubscriptionRevChart(),
-          )
+            child: SubscriptionOverviewChart(),
+          ),
+
+          SizedBox(height: 16),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Wrap(
+                direction: Axis.horizontal,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                children: [
+                  const CustomText(text: AppStrings.weeklyTitle),
+                  Container(
+                    color: AppColors.blue,
+                    height: 8,
+                    width: 8,
+                  )
+                ],
+              ),
+              Wrap(
+                direction: Axis.horizontal,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                children: [
+                  const CustomText(text: AppStrings.monthlyTitle),
+                  Container(
+                    color: AppColors.darkGreen,
+                    height: 8,
+                    width: 8,
+                  )
+                ],
+              ),
+              Wrap(
+                direction: Axis.horizontal,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                children: [
+                  const CustomText(text: AppStrings.yearlyTitle),
+                  Container(
+                    color: AppColors.yellow,
+                    height: 8,
+                    width: 8,
+                  )
+                ],
+              )
+            ],
+          ),
+
+          SizedBox(height: 12),
+
         ],
       ),
     );

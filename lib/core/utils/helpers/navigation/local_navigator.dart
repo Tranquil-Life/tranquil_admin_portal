@@ -7,5 +7,5 @@ NavigationController navigationController = NavigationController.instance;
 Navigator localNavigator() => Navigator(
   key: navigationController.navigatorKey,
   onGenerateRoute: generateRoute,
-  initialRoute: Routes.dashboardRoute,
+  initialRoute: Routes.therapistsPageRoute,
 );

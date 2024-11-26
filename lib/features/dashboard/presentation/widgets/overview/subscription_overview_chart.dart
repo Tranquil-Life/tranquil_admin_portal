@@ -3,8 +3,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 
-class SubscriptionRevChart extends StatelessWidget {
-  const SubscriptionRevChart({super.key});
+class SubscriptionOverviewChart extends StatelessWidget {
+  const SubscriptionOverviewChart({super.key});
 
   @override
   Widget build(BuildContext context) {
