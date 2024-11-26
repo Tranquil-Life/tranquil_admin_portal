@@ -8,6 +8,7 @@ class CustomFormField extends StatelessWidget {
   final String? initialValue;
   final TextEditingController? textEditingController;
   final bool showCursor;
+  final Color? fillColor;
   final Function()? onTap;
   final TextInputType? textInputType;
   final bool readOnly, obscureText;
@@ -35,6 +36,7 @@ class CustomFormField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     this.inputBorder = InputBorder.none,
     this.onChanged,
+    this.fillColor
   }) : super(key: key);
 
   @override
@@ -58,7 +60,7 @@ class CustomFormField extends StatelessWidget {
           const TextStyle(
               fontSize: 18, color: Colors.grey),
           errorStyle: const TextStyle(color: Colors.white, fontSize: 14),
-          fillColor: Colors.white,
+          fillColor: fillColor ?? Colors.white,
           border: inputBorder,
           filled: true,
           contentPadding: EdgeInsets.symmetric(

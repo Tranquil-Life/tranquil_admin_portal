@@ -5,7 +5,7 @@ import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.d
 
 class MenController extends GetxController{
   static MenController instance = Get.find();
-  var activeItem = Routes.dashboardDisplayName.obs;
+  var activeItem = Routes.therapistsDisplayName.obs;
   var hoverItem = "".obs;
 
   RxInt selectedIndex = 0.obs;
@@ -29,6 +29,8 @@ class MenController extends GetxController{
     switch(itemName){
       case Routes.dashboardDisplayName:
         return _customIcon(Icons.dashboard, itemName);
+      case Routes.therapistsDisplayName:
+        return _customIcon(Icons.group, itemName);
       case Routes.authenticationPageDisplayName:
         return _customIcon(Icons.logout, itemName);
       default:

@@ -15,9 +15,10 @@ import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/in
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_cards_small.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/journal_entries/journal_entries_card.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/mood_tracking/mood_tracking_card.dart';
-import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/overview_card.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/revenue_overview.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/subscription_overview.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/topics/topics_card.dart';
-import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menuController.dart';
+import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menu_controller.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -99,18 +100,17 @@ class _DashboardState extends State<Dashboard> {
                                           ));
                                     }).toList()),
                               )),
-                          SizedBox(
+                        Obx(()=>  SizedBox(
                             width: displayWidth(context),
-                            child: OverviewCard(
+                            child: overviewController.overviewIndex.value == 0
+                                ? SubscriptionOverview(
                               growth: 0,
                               data: overviewController.growthData,
                               filterType: AppStrings.lastQuarterTitle,
                               increased: false,
-                            ),
-                          ),
-
+                            )
+                                : RevenueOverview()),),
                           SizedBox(height: 34),
-
                           TopicsCard()
                         ],
                       ),

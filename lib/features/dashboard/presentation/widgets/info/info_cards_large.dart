@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/svg_paths.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_card_item.dart';
@@ -12,7 +13,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InfoCard(
-          title: "Completed sessions",
+          title: AppStrings.completedSessionsTitle,
           value: 567,
           iconPath: SvgPaths.clockIcon,
           difference: 447,
@@ -22,7 +23,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         ),
         SizedBox(width: 24),
         InfoCard(
-          title: "Active accounts",
+          title: AppStrings.activeAccountsTitle,
           value: 44667,
           iconPath: SvgPaths.peopleIcon,
           difference: 44554,
@@ -33,7 +34,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         SizedBox(width: 24),
 
         InfoCard(
-          title: "Therapists",
+          title: AppStrings.therapistsTitle,
           value: 67,
           iconPath: SvgPaths.personBlueIcon,
           difference: 42,
@@ -44,7 +45,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         SizedBox(width: 24),
 
         InfoCard(
-          title: "Businesses",
+          title: AppStrings.businessesTitle,
           value: 24,
           iconPath: SvgPaths.personBlueIcon,
           difference: 42,
@@ -55,7 +56,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
         SizedBox(width: 24),
 
         InfoCard(
-          title: "Registered Users",
+          title: AppStrings.registeredUsersTitle,
           value: 4667,
           iconPath: SvgPaths.personBlueIcon,
           difference: 4667,
