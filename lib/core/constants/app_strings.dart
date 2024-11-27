@@ -65,4 +65,8 @@ class AppStrings{
   static const String addTherapistMsg = 'Add therapist';
 
   static const String therapistsTableMsg = 'Manage therapist’s accounts';
+
+  static var therapistSearchHintMsg = 'Search for name, user ID';
+  static var filterTitle = 'Filter';
+  static var sortByTitle = 'Sort by';
 }
