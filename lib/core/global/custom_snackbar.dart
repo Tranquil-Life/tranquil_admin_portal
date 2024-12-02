@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/utils/services/api_service.dart';
+import 'package:tranquil_admin_portal/features/auth/presentation/controllers/auth_controller.dart';
 
 class CustomSnackBar {
   static void showSnackBar({
@@ -30,5 +32,23 @@ class CustomSnackBar {
         style: const TextStyle(fontSize: 14, color: AppColors.white),
       ),
     );
+  }
+
+  static void errorSnackBar(String errorMsg) {
+    if (errorMsg.contains(ApiService.certVerifyFailed)) {
+      return showSnackBar(
+          context: Get.context!,
+          title: "Internet Error",
+          message: "Please change your network provider",
+          backgroundColor: AppColors.red);
+    } else if(errorMsg.toLowerCase().contains('unauthenticated')){
+      AuthController().signOut();
+    } else {
+      return CustomSnackBar.showSnackBar(
+          context: Get.context!,
+          title: "Error",
+          message: errorMsg,
+          backgroundColor: AppColors.red);
+    }
   }
 }

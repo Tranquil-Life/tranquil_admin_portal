@@ -1,5 +1,5 @@
 class AppStrings{
-  static const appLogo = "assets/images/tranquil_life_logo.png";
+  static const String appLogo = "assets/images/tranquil_life_logo.png";
   static const String appName = "Tranquil Life";
 
   static const String loginTitle = "Login";
@@ -21,10 +21,9 @@ class AppStrings{
   static const String supportTitle = "Help & support";
   static const String logOutTitle = "Log out";
 
-  static const String completedSessionsTitle = "Dashboard";
+  static const String completedSessionsTitle = "Completed sessions";
   static const String activeAccountsTitle = "Active accounts";
   static const String registeredUsersTitle = "Registered Users";
-  static const String lastQuarterTitle = "Last quarter";
   static const String subscriptionOverviewTitle = "Subscription overview";
   static const String revenueOverviewTitle = "Revenue overview";
   static const String revenueTitle = 'Revenue';
@@ -48,6 +47,7 @@ class AppStrings{
   static const String totalEntriesMsg = "Total journal entries created";
 
   static const String lastMonthTitle = 'Last month';
+  static const String lastQuarterTitle = "Last quarter";
   static const String lastYearTitle = 'Last year';
   static const String todayTitle = 'Today';
 
@@ -65,4 +65,13 @@ class AppStrings{
   static const String addTherapistMsg = 'Add therapist';
 
   static const String therapistsTableMsg = 'Manage therapist’s accounts';
+
+  static const String therapistSearchHintMsg = 'Search for name, user ID';
+  static const String filterTitle = 'Filter';
+  static const String sortByTitle = 'Sort by';
+
+  static const String completed = "completed";
+  static const String pending = "pending";
+  static const String inProgress = "in progress";
+  static const String cancelled = "cancelled";
 }

@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/global/custom_snackbar.dart';
+import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.dart';
 import 'package:tranquil_admin_portal/features/auth/data/repos/auth_repo.dart';
 import 'package:tranquil_admin_portal/features/auth/domain/entities/login_data.dart';
 import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
@@ -38,9 +40,20 @@ class AuthController extends GetxController {
       if (data != null) {
         User user = UserModel.fromJson(data);
         userDataStore.user = user.toJson();
+
         Get.to(SiteLayout());
       }
+    });
+  }
 
+  Future signOut() async {
+    Either either = await authRepo.logout();
+    either.fold((l) {
+      Get.offAllNamed(Routes.authenticationPageRoute);
+    }, (r) async {
+      await getStore.clearAllData();
+
+      Get.offAllNamed(Routes.authenticationPageRoute);
     });
   }
 }
