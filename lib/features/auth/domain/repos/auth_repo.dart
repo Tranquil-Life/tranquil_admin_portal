@@ -6,4 +6,5 @@ abstract class AuthRepo<T, F extends QueryParams> extends ApiService {
   AuthRepo();
 
   Future<Either<ApiError, dynamic>> login({required F params});
+  Future<Either<ApiError, dynamic>> logout();
 }
