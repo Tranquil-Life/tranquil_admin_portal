@@ -7,4 +7,9 @@ class SvgPaths{
   static const String infoIcon = 'assets/images/icons/info.svg';
   static const String categoriesIcon = 'assets/images/icons/categories.svg';
   static const String sessionIcon = 'assets/images/icons/session.svg';
+  static const String searchIcon = 'assets/images/icons/search.svg';
+  static const String filterIcon = 'assets/images/icons/filter.svg';
+  static const String emailIcon = 'assets/images/icons/email.svg';
+  static const String phoneIcon = 'assets/images/icons/phone.svg';
+  static const String moreIcon = 'assets/images/icons/more.svg';
 }

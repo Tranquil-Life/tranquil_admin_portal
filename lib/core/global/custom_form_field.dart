@@ -18,6 +18,7 @@ class CustomFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
   final InputBorder inputBorder;
+  final double verticalPadding;
 
   CustomFormField({Key? key,
     this.hint = "",
@@ -36,7 +37,8 @@ class CustomFormField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     this.inputBorder = InputBorder.none,
     this.onChanged,
-    this.fillColor
+    this.fillColor,
+    this.verticalPadding = 22.0
   }) : super(key: key);
 
   @override
@@ -64,12 +66,13 @@ class CustomFormField extends StatelessWidget {
           border: inputBorder,
           filled: true,
           contentPadding: EdgeInsets.symmetric(
-              vertical: (hint=='Password' || hint=='Display Name') ? 17.0 : 22.0, horizontal: 24.0),
+              vertical: (hint=='Password' || hint=='Display Name') ? 17.0 : verticalPadding, horizontal: 24.0),
           // If  you are using latest version of flutter then lable text and hint text shown like this
           // if you r using flutter less then 1.20.* then maybe this is not working properly
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffix: suffix,
-          prefix: prefix),
+          prefixIcon: prefix,
+      ),
     );
   }
 }

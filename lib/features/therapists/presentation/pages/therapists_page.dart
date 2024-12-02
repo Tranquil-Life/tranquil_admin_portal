@@ -21,6 +21,13 @@ class _TherapistsPageState extends State<TherapistsPage> {
   final therapistController = Get.put(TherapistsController());
 
   @override
+  void initState() {
+    therapistController.getAllTherapists();
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(right: 24),
@@ -45,7 +52,7 @@ class _TherapistsPageState extends State<TherapistsPage> {
                     if (ResponsiveWidget.isCustomScreen(context))
                       TherapistsInfoCardsMedium()
                     else
-                      TherapistsInfoCardsLarge()
+                      TherapistsInfoCardsLarge(therapistsController: therapistController)
                   else
                     TherapistsInfoCardsSmall(),
 

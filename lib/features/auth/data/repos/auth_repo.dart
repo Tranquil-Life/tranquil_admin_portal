@@ -12,4 +12,11 @@ class AuthRepoIml extends AuthRepo {
             () => postReq(AuthEndpoints.login, body: params.toJson()))
         .then((value) => handleResponse(value));
   }
+
+  @override
+  Future<Either<ApiError, dynamic>> logout() async{
+    return await catchSocketException(
+            () => postReq(AuthEndpoints.logOut))
+        .then((value) => handleResponse(value));
+  }
 }
