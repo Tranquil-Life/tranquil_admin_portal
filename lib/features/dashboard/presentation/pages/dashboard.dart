@@ -30,6 +30,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final menuController = Get.put(MenController());
   final overviewController = Get.put(OverviewController());
+  final dashboardController = Get.put(DashboardController());
   final appInstallsController = Get.put(AppInstallController());
 
   @override
@@ -57,7 +58,7 @@ class _DashboardState extends State<Dashboard> {
                   if (ResponsiveWidget.isCustomScreen(context))
                     InfoCardsMediumScreen()
                   else
-                    InfoCardsLargeScreen()
+                    InfoCardsLargeScreen(dashboardController: dashboardController)
                 else
                   InfoCardsSmallScreen(),
                 const SizedBox(height: 24),

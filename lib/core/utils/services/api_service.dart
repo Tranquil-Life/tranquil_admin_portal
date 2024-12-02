@@ -29,6 +29,8 @@ class ApiData {
 }
 
 class ApiService {
+  static const certVerifyFailed = "CERTIFICATE_VERIFY_FAILED";
+
   final Dio dio = Dio();
 
   ApiService() {
@@ -115,7 +117,7 @@ class ApiService {
   Future<Either<ApiError, dynamic>> postReq(String url, {dynamic body}) async {
     final headers = _getHeaders();
 
-    Response response = await dio.post(url, data: body);
+    Response response = await dio.post(url, data: body, options: Options(headers: headers));
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return Right(response.data);

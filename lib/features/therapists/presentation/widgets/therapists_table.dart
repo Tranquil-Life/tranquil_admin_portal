@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/svg_paths.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/global/custom_form_field.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
+import 'package:tranquil_admin_portal/core/utils/extensions/date_time_extension.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/size_helpers.dart';
+import 'package:tranquil_admin_portal/features/therapists/domain/entities/therapist.dart';
+import 'package:tranquil_admin_portal/features/therapists/presentation/controllers/therapists_controller.dart';
 
 class TherapistsTable extends StatefulWidget {
   const TherapistsTable({super.key});
@@ -15,58 +19,62 @@ class TherapistsTable extends StatefulWidget {
 }
 
 class _TherapistsTableState extends State<TherapistsTable> {
+  TherapistsController therapistsController = Get.put(TherapistsController());
+
   var columnsArray = [
     "", // Header for checkbox
     "s/n",
     "PROFILE ",
     "CONTACT",
-    "TYPE",
+    "CATEGORY",
     "EARNINGS",
     'DATE JOINED',
     'LAST ACTIVE',
     'ACTIONS'
   ];
 
-  var therapists = <Map<String, dynamic>>[
-    {
-      'id': 1,
-      'name': 'Elyse Lindell, MD',
-      'contact': {
-        'email': 'elyselindell@gmail.com',
-        'phone': '+44 20 8763 1129',
-        'location': 'UK'
-      },
-      'type': {'company_name': 'Private practice', 'type': 'Solo practitioner'},
-      'earnings': {'amount_earned': '45094', 'completed_sessions': '33'},
-      'date_joined': 'Sep 27, 2023',
-      'last_active': 'ONLINE',
-      'selected': false,
+  // var therapists = <Map<String, dynamic>>[
+  //   {
+  //     'id': 1,
+  //     'name': 'Elyse Lindell, MD',
+  //     'contact': {
+  //       'email': 'elyselindell@gmail.com',
+  //       'phone': '+44 20 8763 1129',
+  //     },
+  //     'location':{
+  //       'longitude':,
+  //       'latitude':,
+  //       'name": '',
+  //     }
+  //     'type': {'company_name': 'Private practice', 'type': 'Solo practitioner'},
+  //     'earnings': {'amount_earned': '45094', 'completed_sessions': '33'},
+  //     'date_joined': 'Sep 27, 2023',
+  //     'last_active': 'ONLINE',
+  //     'selected': false
+  //   },
+  //   {
+  //     'id': 2,
+  //     'name': 'Sebastian Thoren, MD',
+  //     'contact': {
+  //       'email': 'sebastainthoren@harleypsych.com',
+  //       'phone': '+1 555 555 1129',
+  //       'location': 'USA'
+  //     },
+  //     'type': {
+  //       'company_name': 'Agency-based therapy',
+  //       'type': 'Harley Psychiatrists'
+  //     },
+  //     'earnings': {'amount_earned': '59405', 'completed_sessions': '29'},
+  //     'date_joined': 'Today, 12:07pm',
+  //     'last_active': 'ONLINE',
+  //     'selected': false
+  //   },
+  // ];
 
-    },
-    {
-      'id': 2,
-      'name': 'Sebastian Thoren, MD',
-      'contact': {
-        'email': 'sebastainthoren@harleypsych.com',
-        'phone': '+1 555 555 1129',
-        'location': 'USA'
-      },
-      'type': {
-        'company_name': 'Agency-based therapy',
-        'type': 'Harley Psychiatrists'
-      },
-      'earnings': {'amount_earned': '59405', 'completed_sessions': '29'},
-      'date_joined': 'Today, 12:07pm',
-      'last_active': 'ONLINE',
-      'selected': false,
-
-    },
-  ];
-
-  void toggleSelection(int id) {
+  void toggleSelection(int id, List<Therapist> therapists) {
     setState(() {
-      final therapist = therapists.firstWhere((element) => element['id'] == id);
-      therapist['selected'] = !therapist['selected'];
+      final therapist = therapists.firstWhere((element) => element.id == id);
+      // therapist['selected'] = !therapist['selected'];
     });
   }
 
@@ -150,12 +158,12 @@ class _TherapistsTableState extends State<TherapistsTable> {
               columnWidths: const {
                 0: FixedColumnWidth(40), // Checkbox column
                 1: FixedColumnWidth(50), // S/N column
-                2: FlexColumnWidth(),   // PROFILE column
-                3: FlexColumnWidth(),   // CONTACT column
-                4: FlexColumnWidth(),   // TYPE column
-                5: FlexColumnWidth(),   // EARNINGS column
-                6: FlexColumnWidth(),   // DATE JOINED column
-                7: FlexColumnWidth(),   // LAST ACTIVE column
+                2: FlexColumnWidth(), // PROFILE column
+                3: FlexColumnWidth(), // CONTACT column
+                4: FlexColumnWidth(), // TYPE column
+                5: FlexColumnWidth(), // EARNINGS column
+                6: FlexColumnWidth(), // DATE JOINED column
+                7: FlexColumnWidth(), // LAST ACTIVE column
                 8: FixedColumnWidth(80), // ACTIONS column
               },
               children: [
@@ -173,14 +181,41 @@ class _TherapistsTableState extends State<TherapistsTable> {
             ),
           ),
           SizedBox(height: 11.5),
-          Column(
-            children: therapists.map((e) {
-              return TherapistItem(
-                item: e,
-                onCheckboxChanged: toggleSelection,
-              );
-            }).toList(),
-          ),
+          FutureBuilder(
+              future: therapistsController.getAllTherapists(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                      child: SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      color: Color(0xFF43A95D),
+                    ),
+                  ));
+                }
+
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(
+                      'Error: ${snapshot.error}',
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  );
+                }
+
+                var therapists = snapshot.data as List<Therapist>;
+
+                return Column(
+                  children: therapists.map((e) {
+                    return TherapistItem(
+                      item: e,
+                      therapistsController: therapistsController,
+                      onCheckboxChanged: (int i) {},
+                    );
+                  }).toList(),
+                );
+              }),
           SizedBox(height: 20)
         ],
       ),
@@ -189,14 +224,20 @@ class _TherapistsTableState extends State<TherapistsTable> {
 }
 
 class TherapistItem extends StatelessWidget {
-  const TherapistItem({super.key, required this.item, required this.onCheckboxChanged});
+  const TherapistItem(
+      {super.key,
+      required this.item,
+      required this.onCheckboxChanged,
+      required this.therapistsController});
 
-  final Map<String, dynamic> item;
+  final Therapist item;
+  final TherapistsController therapistsController;
   final ValueChanged<int> onCheckboxChanged;
-
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey actionKey = GlobalKey();
+
     return Column(
       children: [
         Table(
@@ -204,26 +245,26 @@ class TherapistItem extends StatelessWidget {
           columnWidths: const {
             0: FixedColumnWidth(40), // Checkbox column
             1: FixedColumnWidth(50), // S/N column
-            2: FlexColumnWidth(),   // PROFILE column
-            3: FlexColumnWidth(),   // CONTACT column
-            4: FlexColumnWidth(),   // TYPE column
-            5: FlexColumnWidth(),   // EARNINGS column
-            6: FlexColumnWidth(),   // DATE JOINED column
-            7: FlexColumnWidth(),   // LAST ACTIVE column
+            2: FlexColumnWidth(), // PROFILE column
+            3: FlexColumnWidth(), // CONTACT column
+            4: FlexColumnWidth(), // TYPE column
+            5: FlexColumnWidth(), // EARNINGS column
+            6: FlexColumnWidth(), // DATE JOINED column
+            7: FlexColumnWidth(), // LAST ACTIVE column
             8: FixedColumnWidth(80), // ACTIONS column
           },
           children: [
             TableRow(children: [
               Checkbox(
-                value: item['selected'],
-                onChanged: (_) => onCheckboxChanged(item['id']),
+                value: false,
+                onChanged: (_) {},
               ),
               CustomText(
-                text: item['id'].toString().toUpperCase(),
+                text: item.id.toString().toUpperCase(),
                 size: 12,
               ),
               CustomText(
-                text: item['name'],
+                text: "${item.fName} ${item.lName}",
                 size: 12,
               ),
               Column(
@@ -236,7 +277,7 @@ class TherapistItem extends StatelessWidget {
                     children: [
                       SvgPicture.asset(SvgPaths.emailIcon),
                       CustomText(
-                        text: item['contact']['email'],
+                        text: item.email,
                         size: 12,
                       ),
                     ],
@@ -249,7 +290,7 @@ class TherapistItem extends StatelessWidget {
                     children: [
                       SvgPicture.asset(SvgPaths.phoneIcon),
                       CustomText(
-                        text: item['contact']['phone'],
+                        text: item.phone,
                         size: 12,
                       ),
                     ],
@@ -268,11 +309,11 @@ class TherapistItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        text: item['type']['type'],
+                        text: "null",
                         size: 12,
                       ),
                       CustomText(
-                        text: item['type']['company_name'],
+                        text: "null",
                         size: 12,
                       ),
                     ],
@@ -283,29 +324,82 @@ class TherapistItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: '\$${item['earnings']['amount_earned']}',
+                    text: "\$${item.earnings?.netIncome}",
                     size: 12,
                     weight: FontWeight.bold,
                   ),
                   CustomText(
-                    text: '${item['earnings']['completed_sessions']} sessions',
+                    text: '${item.completedSessions} sessions',
                     size: 12,
                   ),
                 ],
               ),
               CustomText(
-                text: item['date_joined'],
+                text: item.createdAt?.toLocal().formatDateTime,
                 size: 12,
               ),
               CustomText(
-                text: item['last_active'],
+                text: item.updatedAt?.toLocal().formatDateTime,
                 size: 12,
               ),
-              SvgPicture.asset(SvgPaths.moreIcon)
+              GestureDetector(
+                key: actionKey, // Assign the key here
+                onTap: () => displayActionPopUp(
+                    context, therapistsController, actionKey, item.id),
+                child: SvgPicture.asset(SvgPaths.moreIcon),
+              )
             ])
           ],
         ),
         Divider()
+      ],
+    );
+  }
+
+  displayActionPopUp(
+      BuildContext context,
+      TherapistsController therapistsController,
+      GlobalKey key,
+      int therapistId) {
+    // Get the RenderBox and its position
+    final RenderBox renderBox =
+        key.currentContext!.findRenderObject() as RenderBox;
+    final Offset offset = renderBox.localToGlobal(Offset.zero);
+    final Size size = renderBox.size;
+
+    // Show the menu at the calculated position
+    return showMenu(
+      color: Colors.white, // Set your preferred color
+      context: context,
+      position: RelativeRect.fromLTRB(
+        offset.dx, // X-coordinate of the GestureDetector
+        offset.dy + size.height, // Y-coordinate + height of the item
+        offset.dx + size.width, // Width of the GestureDetector
+        0, // No margin at the bottom
+      ),
+      items: [
+        PopupMenuItem(
+          onTap: () async =>
+              await therapistsController.approveTherapist(therapistId),
+          value: 'approve',
+          child: const Text('Approve'),
+        ),
+        const PopupMenuItem(
+          value: 'block',
+          child: Text('Block'),
+        ),
+        const PopupMenuItem(
+          value: 'view',
+          child: Text('View'),
+        ),
+        const PopupMenuItem(
+          value: 'pay',
+          child: Text('Pay'),
+        ),
+        const PopupMenuItem(
+          value: 'delete',
+          child: Text('Delete'),
+        ),
       ],
     );
   }

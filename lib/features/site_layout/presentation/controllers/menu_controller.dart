@@ -5,7 +5,7 @@ import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.d
 
 class MenController extends GetxController{
   static MenController instance = Get.find();
-  var activeItem = Routes.therapistsDisplayName.obs;
+  var activeItem = Routes.dashboardDisplayName.obs;
   var hoverItem = "".obs;
 
   RxInt selectedIndex = 0.obs;
@@ -13,8 +13,6 @@ class MenController extends GetxController{
 
   changeActiveItemTo(String itemName) {
     activeItem.value = itemName;
-    print(activeItem.value);
-
   }
 
   onHover(String itemName) {
