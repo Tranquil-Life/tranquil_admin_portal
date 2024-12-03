@@ -16,6 +16,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        //Count sessions based the status type
         FutureBuilder(
             future: dashboardController.countSessions(),
             builder: (context, snapshot) {
@@ -54,45 +55,163 @@ class InfoCardsLargeScreen extends StatelessWidget {
             }),
 
         SizedBox(width: 24),
-        InfoCard(
-          title: AppStrings.activeAccountsTitle,
-          value: 44667,
-          iconPath: SvgPaths.peopleIcon,
-          difference: 44554,
-          trendIcon: Icons.trending_down,
-          trendIconColor: AppColors.red,
-          onTap: () {},
-        ),
+
+        //COUNT ACTIVE ACCOUNTS
+        FutureBuilder(
+            future: dashboardController.countActiveAccounts(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: Container(
+                  margin: EdgeInsets.only(left: 8),
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: AppColors.green,
+                  ),
+                ));
+              }
+
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+
+              var total = snapshot.data;
+
+              return InfoCard(
+                title: AppStrings.activeAccountsTitle,
+                value: total,
+                iconPath: SvgPaths.peopleIcon,
+                difference: 0,
+                trendIcon: Icons.trending_down,
+                trendIconColor: AppColors.red,
+                onTap: () {},
+              );
+            }),
+
         SizedBox(width: 24),
-        InfoCard(
-          title: AppStrings.therapistsTitle,
-          value: 67,
-          iconPath: SvgPaths.personBlueIcon,
-          difference: 42,
-          trendIcon: Icons.trending_up,
-          trendIconColor: AppColors.green,
-          onTap: () {},
-        ),
+
+        //COUNT THERAPISTS
+        FutureBuilder(
+            future: dashboardController.countTherapists(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: Container(
+                  margin: EdgeInsets.only(left: 8),
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: AppColors.green,
+                  ),
+                ));
+              }
+
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+
+              var total = snapshot.data;
+
+              return InfoCard(
+                title: AppStrings.therapistsTitle,
+                value: total,
+                iconPath: SvgPaths.personBlueIcon,
+                difference: 0,
+                trendIcon: Icons.trending_up,
+                trendIconColor: AppColors.green,
+                onTap: () {},
+              );
+            }),
         SizedBox(width: 24),
-        InfoCard(
-          title: AppStrings.businessesTitle,
-          value: 24,
-          iconPath: SvgPaths.personBlueIcon,
-          difference: 42,
-          trendIcon: Icons.trending_up,
-          trendIconColor: AppColors.green,
-          onTap: () {},
-        ),
+
+        //COUNT BUSINESSES
+        FutureBuilder(
+            future: dashboardController.countBusinesses(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: Container(
+                  margin: EdgeInsets.only(left: 8),
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: AppColors.green,
+                  ),
+                ));
+              }
+
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+
+              var total = snapshot.data;
+
+              return InfoCard(
+                title: AppStrings.businessesTitle,
+                value: total,
+                iconPath: SvgPaths.personBlueIcon,
+                difference: 0,
+                trendIcon: Icons.trending_up,
+                trendIconColor: AppColors.green,
+                onTap: () {},
+              );
+            }),
+
         SizedBox(width: 24),
-        InfoCard(
-          title: AppStrings.registeredUsersTitle,
-          value: 4667,
-          iconPath: SvgPaths.personBlueIcon,
-          difference: 4667,
-          trendIcon: Icons.arrow_right_alt,
-          trendIconColor: AppColors.grey,
-          onTap: () {},
-        ),
+
+        //COUNT REGISTERED USERS
+        FutureBuilder(
+            future: dashboardController.countRegisteredUsers(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: Container(
+                  margin: EdgeInsets.only(left: 8),
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: AppColors.green,
+                  ),
+                ));
+              }
+
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'Error: ${snapshot.error}',
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                );
+              }
+
+              var total = snapshot.data;
+
+              return InfoCard(
+                title: AppStrings.registeredUsersTitle,
+                value: total,
+                iconPath: SvgPaths.personBlueIcon,
+                difference: 0,
+                trendIcon: Icons.arrow_right_alt,
+                trendIconColor: AppColors.grey,
+                onTap: () {},
+              );
+            }),
       ],
     );
   }
