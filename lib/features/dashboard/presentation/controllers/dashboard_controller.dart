@@ -40,6 +40,7 @@ class DashboardController extends GetxController {
     return total;
   }
 
+
   //Get number of pending sessions
   Future<int> countPendingSessions({int lastQuarter = 1}) async {
     int total = 0;
@@ -72,6 +73,18 @@ class DashboardController extends GetxController {
 
     Either either = await dashboardRepo.countSessions(
         lastQuarter: lastQuarter, status: AppStrings.cancelled);
+    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+      total = r['data'];
+    });
+
+    return total;
+  }
+
+  //Get number of therapists
+  Future<int> countActiveAccounts() async {
+    int total = 0;
+
+    Either either = await dashboardRepo.countActiveAccounts();
     either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
       total = r['data'];
     });
