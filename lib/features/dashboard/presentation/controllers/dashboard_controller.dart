@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/global/custom_snackbar.dart';
+import 'package:tranquil_admin_portal/features/dashboard/data/models/subscription_model.dart';
 import 'package:tranquil_admin_portal/features/dashboard/data/repos/dashboard_repo.dart';
+import 'package:tranquil_admin_portal/features/dashboard/domain/entities/subscription.dart';
 import 'package:tranquil_admin_portal/features/therapists/presentation/controllers/therapists_controller.dart';
 
 class DashboardController extends GetxController {
@@ -33,13 +35,14 @@ class DashboardController extends GetxController {
     int total = 0;
 
     Either either = await dashboardRepo.countSessions(lastQuarter: lastQuarter);
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Completed sessions: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 
     return total;
   }
-
 
   //Get number of pending sessions
   Future<int> countPendingSessions({int lastQuarter = 1}) async {
@@ -47,7 +50,9 @@ class DashboardController extends GetxController {
 
     Either either = await dashboardRepo.countSessions(
         lastQuarter: lastQuarter, status: AppStrings.pending);
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Pending sessions: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 
@@ -60,7 +65,10 @@ class DashboardController extends GetxController {
 
     Either either = await dashboardRepo.countSessions(
         lastQuarter: lastQuarter, status: AppStrings.inProgress);
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold(
+        (l) =>
+            CustomSnackBar.errorSnackBar("Sessions In Progress: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 
@@ -73,7 +81,9 @@ class DashboardController extends GetxController {
 
     Either either = await dashboardRepo.countSessions(
         lastQuarter: lastQuarter, status: AppStrings.cancelled);
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Cancelled sessions: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 
@@ -85,7 +95,9 @@ class DashboardController extends GetxController {
     int total = 0;
 
     Either either = await dashboardRepo.countActiveAccounts();
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Active accounts: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 
@@ -104,7 +116,8 @@ class DashboardController extends GetxController {
     int total = 0;
 
     Either either = await dashboardRepo.countBusinesses();
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold((l) => CustomSnackBar.errorSnackBar("Businesses: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 
@@ -117,7 +130,9 @@ class DashboardController extends GetxController {
 
     Either either =
         await dashboardRepo.countRegisteredUsers(lastQuarter: lastQuarter);
-    either.fold((l) => CustomSnackBar.errorSnackBar(l.message!), (r) {
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Registered users: ${l.message}"),
+        (r) {
       total = r['data'];
     });
 

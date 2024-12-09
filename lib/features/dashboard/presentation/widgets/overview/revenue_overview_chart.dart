@@ -15,15 +15,15 @@ class _RevenueOverviewChartState extends State<RevenueOverviewChart> {
   @override
   void initState() {
     data = [
-      ChartData('Session payments', 55000),
-      ChartData('Subscriptions', 45000),
+      ChartData('Session payments', 0),
+      ChartData('Subscriptions', 0),
     ];
     tooltip = TooltipBehavior(enable: true);
 
     super.initState();
   }
 
-  var barColors = <Color>[Color(0xff0680BB), Color(0xff03405E)];
+  var barColors = <Color>[const Color(0xff0680BB), const Color(0xff03405E)];
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,8 @@ class _RevenueOverviewChartState extends State<RevenueOverviewChart> {
               pointColorMapper:  (_, index) => barColors[index],
               xValueMapper: (ChartData data, _) => data.x,
               yValueMapper: (ChartData data, _) => data.y,
-              name: 'Total revenue')
+              name: 'Total revenue'
+          )
         ]
     );
   }

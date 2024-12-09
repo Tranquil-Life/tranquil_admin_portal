@@ -1,7 +1,6 @@
 part of 'user.dart';
 
 
-//TODO: Rename the keys
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,

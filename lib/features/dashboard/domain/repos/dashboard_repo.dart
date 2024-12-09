@@ -22,9 +22,13 @@ abstract class DashboardRepo<T, F extends QueryParams> extends ApiService {
 
   Future<Either<ApiError, dynamic>> getSubscriptionStats();
 
+  Future<Either<ApiError, dynamic>> getSubsPercentChange();
+
   Future<Either<ApiError, dynamic>> getMoodTrackingStats();
 
-  Future<Either<ApiError, dynamic>> getJournalStats();
+  Future<Either<ApiError, dynamic>> countJournalEntries();
+
+  Future<Either<ApiError, dynamic>> countSharedEntries();
 
   Future<Either<ApiError, dynamic>> getAffirmationStats();
 

@@ -42,11 +42,43 @@ class DashboardRepoImpl extends DashboardRepo {
         int lastYear = 0,
         int today = 0}) async {
     return await catchSocketException(() => getReq(
-        TransactionsEndpoints.totalRevenue(
-            lastQuarter: lastQuarter,
-            lastMonth: lastMonth,
-            lastYear: lastYear,
-            today: today))).then((value) => handleResponse(value));
+        TransactionsEndpoints.totalRevenue)).then((value) => handleResponse(value));
+  }
+
+  @override
+  Future<Either<ApiError, dynamic>> countJournalEntries() async{
+    return await catchSocketException(() => getReq(
+        MoodsAndJournal.countJournalEntries)).then((value) => handleResponse(value));
+  }
+
+  @override
+  Future<Either<ApiError, dynamic>> countSharedEntries() async{
+    return await catchSocketException(() => getReq(
+        MoodsAndJournal.countSharedEntries)).then((value) => handleResponse(value));
+  }
+
+  @override
+  Future<Either<ApiError, dynamic>> getMoodTrackingStats() async{
+    return await catchSocketException(() => getReq(
+        MoodsAndJournal.mostTrackedMoods)).then((value) => handleResponse(value));
+  }
+
+  @override
+  Future<Either<ApiError, dynamic>> getSubscriptionStats() async{
+    return await catchSocketException(() => getReq(
+        SubscriptionEndpoints.subscriptions)).then((value) => handleResponse(value));
+  }
+
+  @override
+  Future<Either<ApiError, dynamic>> getSubsPercentChange() async{
+    return await catchSocketException(() => getReq(
+        SubscriptionEndpoints.subsPercentChange)).then((value) => handleResponse(value));
+  }
+
+  @override
+  Future<Either<ApiError, dynamic>> getTopTopicsWithMira() async{
+    return await catchSocketException(() => getReq(
+        TopicEndpoints.list)).then((value) => handleResponse(value));
   }
 
   @override
@@ -55,27 +87,4 @@ class DashboardRepoImpl extends DashboardRepo {
     throw UnimplementedError();
   }
 
-  @override
-  Future<Either<ApiError, dynamic>> getJournalStats() {
-    // TODO: implement getJournalStats
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<ApiError, dynamic>> getMoodTrackingStats() {
-    // TODO: implement getMoodTrackingStats
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<ApiError, dynamic>> getSubscriptionStats() {
-    // TODO: implement getSubscriptionStats
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<ApiError, dynamic>> getTopTopicsWithMira() {
-    // TODO: implement getTopTopicsWithMira
-    throw UnimplementedError();
-  }
 }
