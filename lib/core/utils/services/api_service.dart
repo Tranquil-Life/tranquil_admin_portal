@@ -107,11 +107,15 @@ class ApiService {
 
     response = await dio.get(url, options: Options(headers: headers));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return Right(response.data);
-    } else {
+    } else if(response.statusCode == 204){
+      return Right("no record");
+    }else {
       return Left(ApiError(message: response.data['message']));
     }
+
+
   }
 
   Future<Either<ApiError, dynamic>> postReq(String url, {dynamic body}) async {

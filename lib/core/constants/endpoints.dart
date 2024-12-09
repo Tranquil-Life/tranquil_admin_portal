@@ -20,8 +20,8 @@ abstract class UserEndpoints {
   static countRegisteredUsers({int lastQuarter = 0}) =>
       '$baseUrl/api/admin/registeredUsers?last_quarter=$lastQuarter';
 
-  static countActiveAccounts({int lastQuarter = 0}) =>
-      '$baseUrl/api/admin/activeAccounts?last_quarter=$lastQuarter';
+  static countActiveAccounts() =>
+      '$baseUrl/api/admin/activeAccountsCount';
 }
 
 abstract class BusinessEndpoints {
@@ -56,12 +56,13 @@ abstract class MeetingsEndpoints {
 }
 
 abstract class TransactionsEndpoints {
-  static String totalRevenue(
-          {int lastQuarter = 0,
-          int lastMonth = 0,
-          int lastYear = 0,
-          int today = 0}) =>
-      '$baseUrl/api/admin/totalRevenue?last_quarter=$lastQuarter&one_month_ago=$lastMonth&last_year=$lastYear&today=$today';
+  // static String totalRevenue(
+  //         {int lastQuarter = 0,
+  //         int lastMonth = 0,
+  //         int lastYear = 0,
+  //         int today = 0}) =>
+  //     '$baseUrl/api/admin/totalRevenue?last_quarter=$lastQuarter&one_month_ago=$lastMonth&last_year=$lastYear&today=$today';
+  static const totalRevenue = '$baseUrl/api/admin/totalRevenue';
   static const transactions = '$baseUrl/api/admin/transactions';
 }
 
@@ -82,8 +83,10 @@ abstract class SuggestionEndpoints {
   static edit(int id) => '$baseUrl/api/admin/editSuggestion/$id';
 }
 
-abstract class Subscription {
+abstract class SubscriptionEndpoints {
   static const addType = '$baseUrl/api/admin/addSubscriptionType';
+  static const subscriptions = '$baseUrl/api/admin/subscriptions';
+  static const subsPercentChange = '$baseUrl/api/admin/subscriptionPercentChange';
 
   static editType(int id) => '$baseUrl/api/admin/editSubscriptionType/$id';
 }
@@ -94,4 +97,10 @@ abstract class Permissions {
 
   static listRolePermissions(int roleId) =>
       '$baseUrl/api/admin/roles/permissions/$roleId/all';
+}
+
+abstract class MoodsAndJournal{
+  static const mostTrackedMoods ='$baseUrl/api/admin/moodsTracked';
+  static const countJournalEntries ='$baseUrl/api/admin/countEntries';
+  static const countSharedEntries ='$baseUrl/api/admin/countSharedEntries';
 }
