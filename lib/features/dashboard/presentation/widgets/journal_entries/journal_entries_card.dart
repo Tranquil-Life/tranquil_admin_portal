@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/size_helpers.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/dashboard_controller.dart';
 
 class JournalEntriesCard extends StatelessWidget {
-  const JournalEntriesCard({super.key});
+  JournalEntriesCard({super.key});
+
+  final dashboardController  = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +53,31 @@ class JournalEntriesCard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomText(text: AppStrings.regularEntriesMsg, size: 12,),
-                  CustomText(text: '0', weight: FontWeight.bold, size: 18,),
+                  const CustomText(text: AppStrings.regularEntriesMsg, size: 12,),
+                  FutureBuilder<int>(future: dashboardController.countJournalEntries(), builder: (context, snapshot){
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            height: 20,
+                            width: 20,
+                            child: const CircularProgressIndicator(
+                              color: AppColors.green,
+                            ),
+                          ));
+                    }
+
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(
+                          'Error: ${snapshot.error}',
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      );
+                    }
+
+                    return CustomText(text: snapshot.data.toString(), weight: FontWeight.bold, size: 18);
+                  })
                 ],
               ),
 
@@ -64,15 +91,38 @@ class JournalEntriesCard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomText(text: AppStrings.entriesUsedInSessionsMsg, size: 12,),
-                  CustomText(text: '0', weight: FontWeight.bold, size: 18,),
+                  const CustomText(text: AppStrings.entriesUsedInSessionsMsg, size: 12,),
+                  FutureBuilder<int>(future: dashboardController.countSharedEntries(), builder: (context, snapshot){
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            height: 20,
+                            width: 20,
+                            child: const CircularProgressIndicator(
+                              color: AppColors.green,
+                            ),
+                          ));
+                    }
+
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text(
+                          'Error: ${snapshot.error}',
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      );
+                    }
+
+                    return CustomText(text: snapshot.data.toString(), weight: FontWeight.bold, size: 18);
+                  })
                 ],
               )
             ],
           ),
 
           SizedBox(height: 24),
-          CustomText(text: "${AppStrings.totalEntriesMsg} 0"),
+          Obx(()=>CustomText(text: "${AppStrings.totalEntriesMsg} ${dashboardController.totalEntries.value}")),
           SizedBox(height: 12)
         ],
       ),

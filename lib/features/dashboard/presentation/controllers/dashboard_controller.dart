@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/global/custom_snackbar.dart';
-import 'package:tranquil_admin_portal/features/dashboard/data/models/subscription_model.dart';
+import 'package:tranquil_admin_portal/features/dashboard/data/models/topic_model.dart';
 import 'package:tranquil_admin_portal/features/dashboard/data/repos/dashboard_repo.dart';
-import 'package:tranquil_admin_portal/features/dashboard/domain/entities/subscription.dart';
+import 'package:tranquil_admin_portal/features/dashboard/domain/entities/mood_data.dart';
 import 'package:tranquil_admin_portal/features/therapists/presentation/controllers/therapists_controller.dart';
 
 class DashboardController extends GetxController {
@@ -13,6 +13,7 @@ class DashboardController extends GetxController {
   DashboardRepoImpl dashboardRepo = DashboardRepoImpl();
 
   var sessionStatus = AppStrings.completed.obs;
+  var totalEntries = 0.obs;
 
   Future<int> countSessions() async {
     int total = 0;
@@ -132,6 +133,81 @@ class DashboardController extends GetxController {
         await dashboardRepo.countRegisteredUsers(lastQuarter: lastQuarter);
     either.fold(
         (l) => CustomSnackBar.errorSnackBar("Registered users: ${l.message}"),
+        (r) {
+      total = r['data'];
+    });
+
+    return total;
+  }
+
+  Future<List<TopicModel>> topTopicsWithMira() async {
+    List<TopicModel> topics = <TopicModel>[];
+
+    Either either = await dashboardRepo.getTopTopicsWithMira();
+    either.fold(
+        (l) =>
+            CustomSnackBar.errorSnackBar("Top topics with Mira: ${l.message}"),
+        (r) {
+      var data = r['data'] as List;
+
+      if (data.isNotEmpty) {
+        topics = data.map((e) => TopicModel.fromJson(e)).toList();
+      }
+    });
+
+    return topics;
+  }
+
+  Future<Map<String, dynamic>> convertToMoodData() async {
+    List<MoodData> moods = <MoodData>[];
+    Map<String, dynamic> moodsTracked = {};
+    Either either = await dashboardRepo.getMoodTrackingStats();
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Mood tracking data: ${l.message}"),
+        (r) {
+      var data = r['data'];
+      if (data != null) {
+        var moodUsage = data['mood_usage'];
+        if (moodUsage is! List) {
+          moods = moodUsage.entries.map((entry) {
+            return MoodData(
+              entry.key
+                  .toString()
+                  .capitalizeFirst!, // Capitalize mood name for display
+              entry.value, // Total count
+            );
+          }).toList();
+        }
+
+        moodsTracked.addAll(
+            {'mood_usage': moods, 'number_of_users': data['number_of_users']});
+      }
+    });
+
+    return moodsTracked;
+  }
+
+  Future<int> countJournalEntries() async {
+    int total = 0;
+
+    Either either = await dashboardRepo.countJournalEntries();
+
+    either.fold((l) => CustomSnackBar.errorSnackBar("Entries: ${l.message}"),
+        (r) {
+      total = r['data'];
+      totalEntries.value = total;
+    });
+
+    return total;
+  }
+
+  Future<int> countSharedEntries() async {
+    int total = 0;
+
+    Either either = await dashboardRepo.countSharedEntries();
+
+    either.fold(
+        (l) => CustomSnackBar.errorSnackBar("Shared Entries: ${l.message}"),
         (r) {
       total = r['data'];
     });

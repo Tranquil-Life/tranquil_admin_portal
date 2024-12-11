@@ -105,7 +105,9 @@ class _RevenueOverviewState extends State<RevenueOverview> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      RevenueOverviewChart(),
+                      //ROverview chart
+                      RevenueOverviewChart(data: data),
+
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

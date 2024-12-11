@@ -17,15 +17,6 @@ class OverviewController extends GetxController {
 
   List<String> filters = [];
 
-  List<GrowthData> growthData = [
-    GrowthData("Jan", 0, 'Weekly'),
-    GrowthData("Jan", 24, 'Monthly'),
-    GrowthData("Feb", 10, 'Weekly'),
-    GrowthData("Feb", 50, 'Monthly'),
-    GrowthData("Mar", 23, 'Weekly'),
-    GrowthData("Mar", 3, 'Monthly'),
-  ];
-
   List<String> overviewTypes = [
     AppStrings.subscriptionOverviewTitle,
     AppStrings.revenueOverviewTitle,
