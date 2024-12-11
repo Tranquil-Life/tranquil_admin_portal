@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class RevenueOverviewChart extends StatefulWidget {
-  const RevenueOverviewChart({super.key});
+  const RevenueOverviewChart({super.key, required this.data});
+
+  final Map<String, dynamic> data;
 
   @override
   State<RevenueOverviewChart> createState() => _RevenueOverviewChartState();
@@ -15,8 +17,8 @@ class _RevenueOverviewChartState extends State<RevenueOverviewChart> {
   @override
   void initState() {
     data = [
-      ChartData('Session payments', 0),
-      ChartData('Subscriptions', 0),
+      ChartData('Session payments', double.parse(widget.data['session_payments'].toString())),
+      ChartData('Subscriptions', double.parse(widget.data['subscriptions'].toString())),
     ];
     tooltip = TooltipBehavior(enable: true);
 

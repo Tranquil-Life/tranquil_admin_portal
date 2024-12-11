@@ -112,7 +112,7 @@ class _DashboardState extends State<Dashboard> {
                             )
                                 : RevenueOverview()),),
                           SizedBox(height: 34),
-                          TopicsCard()
+                          TopicsCard(dashboardController: dashboardController)
                         ],
                       ),
                     ),
