@@ -2,86 +2,122 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/utils/extensions/date_time_extension.dart';
+import 'package:tranquil_admin_portal/features/dashboard/domain/entities/subscription.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/overview_controller.dart';
 
 class SubscriptionOverviewChart extends StatelessWidget {
-  const SubscriptionOverviewChart({super.key});
+  const SubscriptionOverviewChart({super.key, required this.overviewController});
+
+  final OverviewController overviewController;
 
   @override
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-      primaryXAxis: CategoryAxis(),
-      primaryYAxis: NumericAxis(
-        title: AxisTitle(text: 'Revenue amount'),
-        labelFormat: '{value}\$',
-        isVisible: true,
-      ),
-      series: <ChartSeries>[
-        SplineSeries<ChartData, String>(
-            dataSource: _getChartData(),
-            xValueMapper: (ChartData data, _) => data.month,
-            yValueMapper: (ChartData data, _) => data.revenue1,
-            name: AppStrings.weeklyTitle,
-            color: AppColors.yellow,
-            markerSettings: MarkerSettings(
+    return FutureBuilder<List<Subscription>>(
+        future: overviewController.subscriptionStats(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+                child: Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  height: 20,
+                  width: 20,
+                  child: const CircularProgressIndicator(
+                    color: AppColors.green,
+                  ),
+                ));
+          }
+
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                'Error: ${snapshot.error}',
+                style: const TextStyle(color: Colors.red),
+              ),
+            );
+          }
+
+          final List<Subscription> subscriptions = snapshot.data!;
+
+          if (subscriptions.isEmpty) {
+            // Render a placeholder chart with no actual data
+            return SfCartesianChart(
+              primaryXAxis: CategoryAxis(),
+              primaryYAxis: NumericAxis(
+                title: AxisTitle(text: 'Revenue amount'),
+                labelFormat: '{value}\$',
+                isVisible: true,
+              ),
+              series: <ChartSeries>[
+                SplineSeries<Subscription, String>(
+                  dataSource: [Subscription.empty()],
+                  xValueMapper: (Subscription data, _) => "No Data",
+                  yValueMapper: (Subscription data, _) => 0.0,
+                  name: "No Data",
+                  color: Colors.grey,
+                  markerSettings: MarkerSettings(
+                    isVisible: true,
+                    color: Colors.grey,
+                    shape: DataMarkerType.circle,
+                    width: 6,
+                    height: 6,
+                  ),
+                ),
+              ],
+            );
+          }
+
+          return SfCartesianChart(
+            primaryXAxis: CategoryAxis(),
+            primaryYAxis: NumericAxis(
+              title: AxisTitle(text: 'Revenue amount'),
+              labelFormat: '{value}\$',
               isVisible: true,
-              color: AppColors.yellow,
-              shape: DataMarkerType.circle,
-              width: 6,
-              height: 6,
-            )),
-        SplineSeries<ChartData, String>(
-            dataSource: _getChartData(),
-            xValueMapper: (ChartData data, _) => data.month,
-            yValueMapper: (ChartData data, _) => data.revenue2,
-            name: 'Revenue 2',
-            color: AppColors.darkGreen,
-            markerSettings: MarkerSettings(
-              isVisible: true,
-              color: AppColors.darkGreen,
-              shape: DataMarkerType.circle,
-              width: 6,
-              height: 6,
-            )),
-        SplineSeries<ChartData, String>(
-            dataSource: _getChartData(),
-            xValueMapper: (ChartData data, _) => data.month,
-            yValueMapper: (ChartData data, _) => data.revenue3,
-            name: 'Revenue 3',
-            color: AppColors.blue,
-            markerSettings: MarkerSettings(
-              isVisible: true,
-              color: AppColors.blue,
-              shape: DataMarkerType.circle,
-              width: 6,
-              height: 6,
-            )),
-      ],
-    );
+            ),
+            series: <ChartSeries>[
+              SplineSeries<Subscription, String>(
+                  dataSource: subscriptions,
+                  xValueMapper: (Subscription data, _) => data.createdAt?.formatMonth,
+                  yValueMapper: (Subscription data, _) => data.amount,
+                  name: AppStrings.weeklyTitle,
+                  color: AppColors.yellow,
+                  markerSettings: MarkerSettings(
+                    isVisible: true,
+                    color: AppColors.yellow,
+                    shape: DataMarkerType.circle,
+                    width: 6,
+                    height: 6,
+                  )),
+              SplineSeries<Subscription, String>(
+                  dataSource: subscriptions,
+                  xValueMapper: (Subscription data, _) => data.createdAt?.formatMonth,
+                  yValueMapper: (Subscription data, _) => data.amount,
+                  name: 'Revenue 2',
+                  color: AppColors.darkGreen,
+                  markerSettings: MarkerSettings(
+                    isVisible: true,
+                    color: AppColors.darkGreen,
+                    shape: DataMarkerType.circle,
+                    width: 6,
+                    height: 6,
+                  )),
+              SplineSeries<Subscription, String>(
+                  dataSource: subscriptions,
+                  xValueMapper: (Subscription data, _) => data.createdAt?.formatMonth,
+                  yValueMapper: (Subscription data, _) => data.amount,
+                  name: 'Revenue 3',
+                  color: AppColors.blue,
+                  markerSettings: MarkerSettings(
+                    isVisible: true,
+                    color: AppColors.blue,
+                    shape: DataMarkerType.circle,
+                    width: 6,
+                    height: 6,
+                  )),
+            ],
+          );
+        });
+
+
   }
-
-  List<ChartData> _getChartData() {
-    return [
-      ChartData('Sep', 2000, 1400, 3000),
-      ChartData('Oct', 1500, 2500, 3500),
-      ChartData('Nov', 2000, 3000, 4000),
-      ChartData('Dec', 2500, 3500, 1400),
-      ChartData('Jan', 4000, 3000, 5000),
-      ChartData('Feb', 3500, 4500, 5500),
-      ChartData('Mar', 4000, 5000, 6000),
-      ChartData('Apr', 4500, 5500, 6500),
-      ChartData('May', 8000, 3000, 7000),
-      ChartData('Jun', 5500, 6500, 7500),
-      ChartData('Jul', 6000, 7000, 8000),
-      ChartData('Aug', 6500, 7500, 8500),
-    ];
-  }
-}
-
-class ChartData {
-  ChartData(this.month, this.revenue1, this.revenue2, this.revenue3);
-
-  final String month;
-  final double revenue1;
-  final double revenue2;
-  final double revenue3;
 }

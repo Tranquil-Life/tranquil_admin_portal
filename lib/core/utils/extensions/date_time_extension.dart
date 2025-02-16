@@ -5,6 +5,7 @@ extension DateTimeExtension on DateTime {
   static final _dateStringFormat = DateFormat('dd-MM-yyyy');
   static final _dateTimeFormat = DateFormat('dd-MM-yyyy hh:mma');
   static final _timeFormat = DateFormat('hh:mma');
+  static final _monthFormat = DateFormat('mmm');
   static final now = DateTime.now();
 
   String get folded {
@@ -36,6 +37,10 @@ extension DateTimeExtension on DateTime {
   String get formattedTime{
 
     return _timeFormat.format(this);
+  }
+
+  String get formatMonth{
+    return _monthFormat.format(this);
   }
 
   String getWeekDay() {
