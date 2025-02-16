@@ -6,19 +6,18 @@ part 'therapist_model.g.dart';
 
 class TherapistModel extends Therapist {
   TherapistModel(
-      {
-           super.id,
-       super.fName,
-       super.lName,
-       super.gender,
-       super.phone,
-       super.email,
-       super.birthDate,
-       super.emailVerifiedAt,
-       super.blockedAt,
-       super.avatarUrl,
-       super.audioIntro,
-          super.videoIntro,
+      {super.id,
+      super.fName,
+      super.lName,
+      super.gender,
+      super.phone,
+      super.email,
+      super.birthDate,
+      super.emailVerifiedAt,
+      super.blockedAt,
+      super.avatarUrl,
+      super.audioIntro,
+      super.videoIntro,
       //  super.linkedinUrl,
       //  super.identityUrl,
       //  super.employmentStatus,
@@ -47,10 +46,10 @@ class TherapistModel extends Therapist {
       //  super.currency,
       //  super.lastSeen,
       //  super.bvn,
-       super.createdAt,
-       super.updatedAt,
+      super.createdAt,
+      super.updatedAt,
       super.earnings,
-       super.completedSessions});
+      super.completedSessions});
 
   factory TherapistModel.fromJson(Map<String, dynamic> json) =>
       _$TherapistFromJson(json);

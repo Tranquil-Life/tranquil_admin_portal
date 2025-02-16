@@ -24,13 +24,13 @@ class _TherapistsTableState extends State<TherapistsTable> {
   var columnsArray = [
     "", // Header for checkbox
     "s/n",
-    // "PROFILE ",
-    // "CONTACT",
-    // "CATEGORY",
-    // "EARNINGS",
-    // 'DATE JOINED',
-    // 'LAST ACTIVE',
-    // 'ACTIONS'
+    "PROFILE ",
+    "CONTACT",
+    "CATEGORY",
+    "EARNINGS",
+    'DATE JOINED',
+    'LAST ACTIVE',
+    'ACTIONS'
   ];
 
   // var therapists = <Map<String, dynamic>>[
@@ -156,15 +156,15 @@ class _TherapistsTableState extends State<TherapistsTable> {
                 border: Border.all(color: AppColors.grey.withOpacity(.3))),
             child: Table(
               columnWidths: const {
-                0: FixedColumnWidth(40), // Checkbox column
+                0: FixedColumnWidth(30), // Checkbox column
                 1: FixedColumnWidth(50), // S/N column
-                // 2: FlexColumnWidth(), // PROFILE column
-                // 3: FlexColumnWidth(), // CONTACT column
-                // 4: FlexColumnWidth(), // TYPE column
-                // 5: FlexColumnWidth(), // EARNINGS column
-                // 6: FlexColumnWidth(), // DATE JOINED column
-                // 7: FlexColumnWidth(), // LAST ACTIVE column
-                // 8: FixedColumnWidth(80), // ACTIONS column
+                2: FlexColumnWidth(), // PROFILE column
+                3: FlexColumnWidth(), // CONTACT column
+                4: FlexColumnWidth(), // TYPE column
+                5: FlexColumnWidth(), // EARNINGS column
+                6: FlexColumnWidth(), // DATE JOINED column
+                7: FlexColumnWidth(), // LAST ACTIVE column
+                8: FixedColumnWidth(80), // ACTIONS column
               },
               children: [
                 TableRow(
@@ -247,13 +247,13 @@ class TherapistItem extends StatelessWidget {
           columnWidths: const {
             0: FixedColumnWidth(40), // Checkbox column
             1: FixedColumnWidth(50), // S/N column
-            // 2: FlexColumnWidth(), // PROFILE column
-            // 3: FlexColumnWidth(), // CONTACT column
-            // 4: FlexColumnWidth(), // TYPE column
-            // 5: FlexColumnWidth(), // EARNINGS column
-            // 6: FlexColumnWidth(), // DATE JOINED column
-            // 7: FlexColumnWidth(), // LAST ACTIVE column
-            // 8: FixedColumnWidth(80), // ACTIONS column
+            2: FlexColumnWidth(), // PROFILE column
+            3: FlexColumnWidth(), // CONTACT column
+            4: FlexColumnWidth(), // TYPE column
+            5: FlexColumnWidth(), // EARNINGS column
+            6: FlexColumnWidth(), // DATE JOINED column
+            7: FlexColumnWidth(), // LAST ACTIVE column
+            8: FixedColumnWidth(80), // ACTIONS column
           },
           children: [
             TableRow(children: [
@@ -265,91 +265,91 @@ class TherapistItem extends StatelessWidget {
                 text: item.id.toString().toUpperCase(),
                 size: 12,
               ),
-              // CustomText(
-              //   text: "${item.fName} ${item.lName}",
-              //   size: 12,
-              // ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Wrap(
-              //       spacing: 4,
-              //       direction: Axis.horizontal,
-              //       crossAxisAlignment: WrapCrossAlignment.center,
-              //       children: [
-              //         SvgPicture.asset(SvgPaths.emailIcon),
-              //         CustomText(
-              //           text: item.email,
-              //           size: 12,
-              //         ),
-              //       ],
-              //     ),
-              //     SizedBox(height: 2),
-              //     Wrap(
-              //       spacing: 4,
-              //       direction: Axis.horizontal,
-              //       crossAxisAlignment: WrapCrossAlignment.center,
-              //       children: [
-              //         SvgPicture.asset(SvgPaths.phoneIcon),
-              //         CustomText(
-              //           text: item.phone,
-              //           size: 12,
-              //         ),
-              //       ],
-              //     )
-              //   ],
-              // ),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     CircleAvatar(
-              //       child: Placeholder(),
-              //       maxRadius: 16,
-              //     ),
-              //     SizedBox(width: 4),
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         CustomText(
-              //           text: "null",
-              //           size: 12,
-              //         ),
-              //         CustomText(
-              //           text: "null",
-              //           size: 12,
-              //         ),
-              //       ],
-              //     )
-              //   ],
-              // ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     CustomText(
-              //       text: "\$${item.earnings?.netIncome}",
-              //       size: 12,
-              //       weight: FontWeight.bold,
-              //     ),
-              //     CustomText(
-              //       text: '${item.completedSessions} sessions',
-              //       size: 12,
-              //     ),
-              //   ],
-              // ),
-              // CustomText(
-              //   text: item.createdAt?.toLocal().formatDateTime,
-              //   size: 12,
-              // ),
-              // CustomText(
-              //   text: item.updatedAt?.toLocal().formatDateTime,
-              //   size: 12,
-              // ),
-              // GestureDetector(
-              //   key: actionKey, // Assign the key here
-              //   onTap: () => displayActionPopUp(
-              //       context, therapistsController, actionKey, item.id),
-              //   child: SvgPicture.asset(SvgPaths.moreIcon),
-              // )
+              CustomText(
+                text: "${item.fName} ${item.lName}",
+                size: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Wrap(
+                    spacing: 4,
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      SvgPicture.asset(SvgPaths.emailIcon),
+                      CustomText(
+                        text: item.email,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 2),
+                  Wrap(
+                    spacing: 4,
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      SvgPicture.asset(SvgPaths.phoneIcon),
+                      CustomText(
+                        text: item.phone,
+                        size: 12,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    maxRadius: 16,
+                    child: item.avatarUrl == null ? Placeholder() : Image.network(item.avatarUrl!),
+                  ),
+                  SizedBox(width: 4),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: "null",
+                        size: 12,
+                      ),
+                      CustomText(
+                        text: "null",
+                        size: 12,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    text: "\$${item.earnings?.netIncome}",
+                    size: 12,
+                    weight: FontWeight.bold,
+                  ),
+                  CustomText(
+                    text: '${item.completedSessions} sessions',
+                    size: 12,
+                  ),
+                ],
+              ),
+              CustomText(
+                text: item.createdAt?.toLocal().formatDateTime,
+                size: 12,
+              ),
+              CustomText(
+                text: item.updatedAt?.toLocal().formatDateTime,
+                size: 12,
+              ),
+              GestureDetector(
+                key: actionKey, // Assign the key here
+                onTap: () => displayActionPopUp(
+                    context, therapistsController, actionKey, item.id!),
+                child: SvgPicture.asset(SvgPaths.moreIcon),
+              )
             ])
           ],
         ),
