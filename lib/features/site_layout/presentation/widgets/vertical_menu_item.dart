@@ -3,9 +3,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_text.dart';
-import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menuController.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/global/custom_text.dart';
+import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menu_controller.dart';
 
 
 class VerticalMenuItem extends StatelessWidget {

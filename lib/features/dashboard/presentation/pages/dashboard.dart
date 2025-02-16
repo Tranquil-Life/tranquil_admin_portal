@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tranquil_admin_portal/app/presentation/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/app/presentation/widgets/custom_text.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
+import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/responsiveness.dart';
+import 'package:tranquil_admin_portal/core/utils/helpers/size_helpers.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/app_install_controller.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/dashboard_controller.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/overview_controller.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/affirmations/affirmations_card.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/app_installs/app_installs_card.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_cards_large.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_cards_medium.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/info/info_cards_small.dart';
-import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/overview_card.dart';
-import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menuController.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/journal_entries/journal_entries_card.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/mood_tracking/mood_tracking_card.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/revenue_overview.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/subscription_overview.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/topics/topics_card.dart';
+import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
+import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
+import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menu_controller.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -20,17 +31,19 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final menuController = Get.put(MenController());
+  final overviewController = Get.put(OverviewController());
   final dashboardController = Get.put(DashboardController());
+  final appInstallsController = Get.put(AppInstallController());
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.only(right: 24),
       child: Column(
         children: [
           //Current page title
           Container(
-              margin: EdgeInsets.only(
-                  top: 80, bottom: 20),
+              margin: const EdgeInsets.only(top: 80, bottom: 20),
               alignment: Alignment.centerLeft,
               child: CustomText(
                 text: menuController.activeItem.value,
@@ -39,6 +52,7 @@ class _DashboardState extends State<Dashboard> {
               )),
 
           Expanded(
+              child: SingleChildScrollView(
             child: Column(
               children: [
                 if (ResponsiveWidget.isLargeScreen(context) ||
@@ -46,82 +60,112 @@ class _DashboardState extends State<Dashboard> {
                   if (ResponsiveWidget.isCustomScreen(context))
                     InfoCardsMediumScreen()
                   else
-                    InfoCardsLargeScreen()
+                    InfoCardsLargeScreen(dashboardController: dashboardController)
                 else
                   InfoCardsSmallScreen(),
-
                 const SizedBox(height: 24),
-
-                Expanded(
-                  child: Row(
-                    children: [
-                      //To view data for Overview, revenue, mood tracking, journal data and affirmations
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 8),
-                              alignment: Alignment.centerLeft,
-                              child: Wrap(
-                                direction: Axis.horizontal,
-                                children: [
-                                  CustomText(
-                                    text: "Overview",
-                                    size: 20,
-                                    weight: FontWeight.w600,
-                                    color: AppColors.black,
-                                  ),
-                                  SizedBox(width: 45),
-                                  CustomText(
-                                    text: "Revenue",
-                                    size: 20,
-                                    weight: FontWeight.normal,
-                                    color: AppColors.grey,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            OverviewCard(
-                              growth: 79,
-                              data: dashboardController.growthData,
-                              filterType: "Last quarter",
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Obx(() => Container(
+                                margin: const EdgeInsets.only(bottom: 8),
+                                alignment: Alignment.centerLeft,
+                                child: Wrap(
+                                    direction: Axis.horizontal,
+                                    children: overviewController.overviewTypes
+                                        .map((e) {
+                                      var index = overviewController
+                                          .overviewTypes
+                                          .indexOf(e);
+                                      return Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 45),
+                                          child: GestureDetector(
+                                            child: CustomText(
+                                              text: e,
+                                              size: 20,
+                                              weight: overviewController
+                                                          .overviewIndex
+                                                          .value ==
+                                                      index
+                                                  ? FontWeight.w600
+                                                  : FontWeight.normal,
+                                              color: AppColors.black,
+                                            ),
+                                            onTap: () {
+                                              overviewController
+                                                  .selectOverviewType(index);
+                                            },
+                                          ));
+                                    }).toList()),
+                              )),
+                        Obx(()=>  SizedBox(
+                            width: displayWidth(context),
+                            child: overviewController.overviewIndex.value == 0
+                                ? SubscriptionOverview(
+                              overviewController: overviewController,
+                              filterType: AppStrings.lastQuarterTitle,
                             )
-                          ],
-                        ),
+                                : RevenueOverview()),),
+                          SizedBox(height: 34),
+                          TopicsCard(dashboardController: dashboardController)
+                        ],
                       ),
+                    ),
 
-                      SizedBox(width: 28),
+                    const SizedBox(width: 24),
 
-                      //To view data for App Installs, and consultation activities
-                      Expanded(
-                        flex: 2,
+                    //To view data for App Installs, and consultation activities
+                    Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: "App install data",
-                              size: 20,
-                              weight: FontWeight.w600,
-                              color: AppColors.black,
-                            ),
-
-                            SizedBox(height: 8),
-
-                            AppInstallsCard(
-                              data: dashboardController.installsData,
-                              controller: dashboardController,
-                            ),
-                          ],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //Features Statistics
+                        CustomText(
+                          text: AppStrings.featureStatsTitle,
+                          size: 20,
+                          weight: FontWeight.w600,
+                          color: AppColors.black,
                         ),
-                      )
-                    ],
-                  ),
-                )
+                        SizedBox(height: 8),
+
+                        //Mood Tracking Data
+                        MoodTrackingCard(),
+                        SizedBox(height: 24),
+
+                        //Journal Entries Data
+                        JournalEntriesCard(),
+                        SizedBox(height: 24),
+
+                        //Affirmations Data
+                        AffirmationsCard(),
+                        SizedBox(height: 40),
+
+                        //App Installs Data
+                        CustomText(
+                          text: AppStrings.appInstallDataTitle,
+                          size: 20,
+                          weight: FontWeight.w600,
+                          color: AppColors.black,
+                        ),
+                        SizedBox(height: 8),
+                        AppInstallsCard(
+                          data: appInstallsController.installsData,
+                          controller: appInstallsController,
+                        ),
+
+                        SizedBox(height: 50),
+                      ],
+                    ))
+                  ],
+                ),
               ],
             ),
-          )
+          ))
         ],
       ),
     );
