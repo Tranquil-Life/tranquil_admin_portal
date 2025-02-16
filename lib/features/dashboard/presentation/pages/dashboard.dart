@@ -18,6 +18,8 @@ import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/mo
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/revenue_overview.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/overview/subscription_overview.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/widgets/topics/topics_card.dart';
+import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
+import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
 import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menu_controller.dart';
 
 class Dashboard extends StatefulWidget {
@@ -36,7 +38,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: 24),
+      padding: const EdgeInsets.only(right: 24),
       child: Column(
         children: [
           //Current page title
@@ -105,14 +107,12 @@ class _DashboardState extends State<Dashboard> {
                             width: displayWidth(context),
                             child: overviewController.overviewIndex.value == 0
                                 ? SubscriptionOverview(
-                              growth: 0,
-                              data: overviewController.growthData,
+                              overviewController: overviewController,
                               filterType: AppStrings.lastQuarterTitle,
-                              increased: false,
                             )
                                 : RevenueOverview()),),
                           SizedBox(height: 34),
-                          TopicsCard()
+                          TopicsCard(dashboardController: dashboardController)
                         ],
                       ),
                     ),
