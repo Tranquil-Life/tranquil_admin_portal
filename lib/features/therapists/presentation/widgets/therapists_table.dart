@@ -156,7 +156,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
                 border: Border.all(color: AppColors.grey.withOpacity(.3))),
             child: Table(
               columnWidths: const {
-                0: FixedColumnWidth(40), // Checkbox column
+                0: FixedColumnWidth(30), // Checkbox column
                 1: FixedColumnWidth(50), // S/N column
                 2: FlexColumnWidth(), // PROFILE column
                 3: FlexColumnWidth(), // CONTACT column
@@ -208,7 +208,9 @@ class _TherapistsTableState extends State<TherapistsTable> {
 
                 return Column(
                   children: therapists.map((e) {
-                    return TherapistItem(
+                    return
+
+                      TherapistItem(
                       item: e,
                       therapistsController: therapistsController,
                       onCheckboxChanged: (int i) {},
@@ -301,8 +303,8 @@ class TherapistItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CircleAvatar(
-                    child: Placeholder(),
                     maxRadius: 16,
+                    child: item.avatarUrl == null ? Placeholder() : Image.network(item.avatarUrl!),
                   ),
                   SizedBox(width: 4),
                   Column(
@@ -345,7 +347,7 @@ class TherapistItem extends StatelessWidget {
               GestureDetector(
                 key: actionKey, // Assign the key here
                 onTap: () => displayActionPopUp(
-                    context, therapistsController, actionKey, item.id),
+                    context, therapistsController, actionKey, item.id!),
                 child: SvgPicture.asset(SvgPaths.moreIcon),
               )
             ])
