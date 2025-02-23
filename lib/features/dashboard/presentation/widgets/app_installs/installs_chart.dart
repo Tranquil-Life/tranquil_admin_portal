@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as charts;
 import 'package:tranquil_admin_portal/features/dashboard/data/models/app_installs_model.dart';
 
 class InstallsChart extends StatelessWidget {
@@ -9,36 +9,36 @@ class InstallsChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
-        legend: const Legend(isVisible: true),
+    return charts.SfCartesianChart(
+        primaryXAxis: charts.CategoryAxis(),
+        legend: const charts.Legend(isVisible: true),
         // Enable tooltip
-        tooltipBehavior: TooltipBehavior(enable: true),
-        series: <ChartSeries<AppInstalls, String>>[
-          StackedBarSeries<AppInstalls, String>(
+        tooltipBehavior: charts.TooltipBehavior(enable: true),
+        series: <charts.ChartSeries<AppInstalls, String>>[
+          charts.StackedBarSeries<AppInstalls, String>(
               dataSource: data!,
               xValueMapper: (AppInstalls installs, _) => installs.os,
               yValueMapper: (AppInstalls installs, _) => installs.installs,
               name: 'Installs',
-              onCreateRenderer: (ChartSeries<AppInstalls, String> series) =>
+              onCreateRenderer: (charts.ChartSeries<AppInstalls, String> series) =>
                   _CustomColumnSeriesRenderer(),
         isVisibleInLegend: false,
               // Enable data label
-              dataLabelSettings: DataLabelSettings(isVisible: true))
+              dataLabelSettings: charts.DataLabelSettings(isVisible: true))
         ]);
   }
 }
 
-class _CustomColumnSeriesRenderer extends StackedBarSeriesRenderer {
+class _CustomColumnSeriesRenderer extends charts.StackedBarSeriesRenderer {
   _CustomColumnSeriesRenderer();
 
   @override
-  StackedBarSegment createSegment() {
+  charts.StackedBarSegment createSegment() {
     return _ColumnCustomPainter();
   }
 }
 
-class _ColumnCustomPainter extends StackedBarSegment {
+class _ColumnCustomPainter extends charts.StackedBarSegment {
   final colorList = [
     Colors.brown,
     Color(0xff00649F),

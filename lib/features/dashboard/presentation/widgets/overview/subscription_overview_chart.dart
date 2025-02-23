@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as charts;
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/utils/extensions/date_time_extension.dart';
@@ -41,24 +41,24 @@ class SubscriptionOverviewChart extends StatelessWidget {
 
           if (subscriptions.isEmpty) {
             // Render a placeholder chart with no actual data
-            return SfCartesianChart(
-              primaryXAxis: CategoryAxis(),
-              primaryYAxis: NumericAxis(
-                title: AxisTitle(text: 'Revenue amount'),
+            return charts.SfCartesianChart(
+              primaryXAxis: charts.CategoryAxis(),
+              primaryYAxis: charts.NumericAxis(
+                title: charts.AxisTitle(text: 'Revenue amount'),
                 labelFormat: '{value}\$',
                 isVisible: true,
               ),
-              series: <ChartSeries>[
-                SplineSeries<Subscription, String>(
+              series: <charts.ChartSeries>[
+                charts.SplineSeries<Subscription, String>(
                   dataSource: [Subscription.empty()],
                   xValueMapper: (Subscription data, _) => "No Data",
                   yValueMapper: (Subscription data, _) => 0.0,
                   name: "No Data",
                   color: Colors.grey,
-                  markerSettings: MarkerSettings(
+                  markerSettings: charts.MarkerSettings(
                     isVisible: true,
                     color: Colors.grey,
-                    shape: DataMarkerType.circle,
+                    shape: charts.DataMarkerType.circle,
                     width: 6,
                     height: 6,
                   ),
@@ -67,50 +67,50 @@ class SubscriptionOverviewChart extends StatelessWidget {
             );
           }
 
-          return SfCartesianChart(
-            primaryXAxis: CategoryAxis(),
-            primaryYAxis: NumericAxis(
-              title: AxisTitle(text: 'Revenue amount'),
+          return charts.SfCartesianChart(
+            primaryXAxis: charts.CategoryAxis(),
+            primaryYAxis: charts.NumericAxis(
+              title: charts.AxisTitle(text: 'Revenue amount'),
               labelFormat: '{value}\$',
               isVisible: true,
             ),
-            series: <ChartSeries>[
-              SplineSeries<Subscription, String>(
+            series: <charts.ChartSeries>[
+              charts.SplineSeries<Subscription, String>(
                   dataSource: subscriptions,
                   xValueMapper: (Subscription data, _) => data.createdAt?.formatMonth,
                   yValueMapper: (Subscription data, _) => data.amount,
                   name: AppStrings.weeklyTitle,
                   color: AppColors.yellow,
-                  markerSettings: MarkerSettings(
+                  markerSettings: charts.MarkerSettings(
                     isVisible: true,
                     color: AppColors.yellow,
-                    shape: DataMarkerType.circle,
+                    shape: charts.DataMarkerType.circle,
                     width: 6,
                     height: 6,
                   )),
-              SplineSeries<Subscription, String>(
+              charts.SplineSeries<Subscription, String>(
                   dataSource: subscriptions,
                   xValueMapper: (Subscription data, _) => data.createdAt?.formatMonth,
                   yValueMapper: (Subscription data, _) => data.amount,
                   name: 'Revenue 2',
                   color: AppColors.darkGreen,
-                  markerSettings: MarkerSettings(
+                  markerSettings: charts.MarkerSettings(
                     isVisible: true,
                     color: AppColors.darkGreen,
-                    shape: DataMarkerType.circle,
+                    shape: charts.DataMarkerType.circle,
                     width: 6,
                     height: 6,
                   )),
-              SplineSeries<Subscription, String>(
+              charts.SplineSeries<Subscription, String>(
                   dataSource: subscriptions,
                   xValueMapper: (Subscription data, _) => data.createdAt?.formatMonth,
                   yValueMapper: (Subscription data, _) => data.amount,
                   name: 'Revenue 3',
                   color: AppColors.blue,
-                  markerSettings: MarkerSettings(
+                  markerSettings: charts.MarkerSettings(
                     isVisible: true,
                     color: AppColors.blue,
-                    shape: DataMarkerType.circle,
+                    shape: charts.DataMarkerType.circle,
                     width: 6,
                     height: 6,
                   )),

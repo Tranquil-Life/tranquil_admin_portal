@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as charts;
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/features/dashboard/domain/entities/mood_data.dart';
@@ -14,19 +14,19 @@ class MoodChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfCartesianChart(
-        primaryXAxis: CategoryAxis(
+    return charts.SfCartesianChart(
+        primaryXAxis: charts.CategoryAxis(
           labelStyle: TextStyle(
             color: AppColors.darkGreen,
             fontSize: 14, // Set the desired color for the x-axis labels
             fontWeight: FontWeight.bold, // Optional: Adjust font weight
           ),
         ),
-        legend: const Legend(isVisible: true),
+        legend: const charts.Legend(isVisible: true),
         // Enable tooltip
-        tooltipBehavior: TooltipBehavior(enable: true),
-        series: <ChartSeries>[
-          ColumnSeries<MoodData, String>(
+        tooltipBehavior: charts.TooltipBehavior(enable: true),
+        series: <charts.ChartSeries>[
+          charts.ColumnSeries<MoodData, String>(
             dataSource: moods,
             xValueMapper: (MoodData mood, _) => "${mood.name}",
             yValueMapper: (MoodData mood, _) => mood.total,
