@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart' as charts;
 
 class RevenueOverviewChart extends StatefulWidget {
   const RevenueOverviewChart({super.key, required this.data});
@@ -12,7 +12,7 @@ class RevenueOverviewChart extends StatefulWidget {
 
 class _RevenueOverviewChartState extends State<RevenueOverviewChart> {
   late List<ChartData> data;
-  late TooltipBehavior tooltip;
+  late charts.TooltipBehavior tooltip;
 
   @override
   void initState() {
@@ -20,7 +20,7 @@ class _RevenueOverviewChartState extends State<RevenueOverviewChart> {
       ChartData('Session payments', double.parse(widget.data['session_payments'].toString())),
       ChartData('Subscriptions', double.parse(widget.data['subscriptions'].toString())),
     ];
-    tooltip = TooltipBehavior(enable: true);
+    tooltip = charts.TooltipBehavior(enable: true);
 
     super.initState();
   }
@@ -29,10 +29,10 @@ class _RevenueOverviewChartState extends State<RevenueOverviewChart> {
 
   @override
   Widget build(BuildContext context) {
-    return SfCircularChart(
+    return charts.SfCircularChart(
         tooltipBehavior: tooltip,
-        series: <CircularSeries<ChartData, String>>[
-          DoughnutSeries<ChartData, String>(
+        series: <charts.CircularSeries<ChartData, String>>[
+          charts.DoughnutSeries<ChartData, String>(
               dataSource: data,
               pointColorMapper:  (_, index) => barColors[index],
               xValueMapper: (ChartData data, _) => data.x,
