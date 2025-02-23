@@ -4,13 +4,13 @@ import 'package:tranquil_admin_portal/features/therapists/domain/entities/earnin
 part 'therapist.g.dart';
 
 abstract class Therapist extends QueryParams {
-  final int id;
-  final String fName;
-  final String lName;
-  final String gender;
-  final String phone;
-  final String email;
-  final String birthDate;
+  final int? id;
+  final String? fName;
+  final String? lName;
+  final String? gender;
+  final String? phone;
+  final String? email;
+  final String? birthDate;
   final DateTime? emailVerifiedAt;
   final DateTime? blockedAt;
   final String? avatarUrl;
@@ -49,55 +49,55 @@ abstract class Therapist extends QueryParams {
   final DateTime? updatedAt;
 
   final Earnings? earnings;
-  final int completedSessions;
+  final int? completedSessions;
 
-  Therapist({
-    required this.id,
-    required this.fName,
-    required this.lName,
-    required this.gender,
-    required this.phone,
-    required this.email,
-    required this.birthDate,
-    required this.emailVerifiedAt,
-    required this.blockedAt,
-    required this.avatarUrl,
-    required this.audioIntro,
-    this.videoIntro,
-    this.earnings,
-    required this.completedSessions,
+  Therapist(
+      {this.id,
+      this.fName,
+      this.lName,
+      this.gender,
+      this.phone,
+      this.email,
+      this.birthDate,
+      this.emailVerifiedAt,
+      this.blockedAt,
+      this.avatarUrl,
+      this.audioIntro,
+      this.videoIntro,
+      this.earnings,
+      this.completedSessions,
 
-    // required this.videoIntro,
-    // required this.linkedinUrl,
-    // required this.identityUrl,
-    // required this.employmentStatus,
-    // required this.company,
-    // required this.companyAddress,
-    // required this.approved,
-    // required this.languages,
-    // required this.years,
-    // required this.rating,
-    // required this.specialties,
-    // required this.availableTime,
-    // required this.fee,
-    // // required this.bio,
-    // required this.cvUrl,
-    // required this.staffId,
-    // // required this.latitude,
-    // // required this.longitude,
-    // // required this.timeZone,
-    // required this.location,
-    // // required this.timezoneIdentifier,
-    // // required this.onlineStatus,
-    // // required this.authToken,
-    // // required this.fcmToken,
-    // // required this.aiPrompt,
-    // required this.currency,
-    // required this.lastSeen,
-    // required this.bvn,
-    required this.createdAt,
-    required this.updatedAt
-  });
+      //  this.videoIntro,
+      //  this.linkedinUrl,
+      //  this.identityUrl,
+      //  this.employmentStatus,
+      //  this.company,
+      //  this.companyAddress,
+      //  this.approved,
+      //  this.languages,
+      //  this.years,
+      //  this.rating,
+      //  this.specialties,
+      //  this.availableTime,
+      //  this.fee,
+      // //  this.bio,
+      //  this.cvUrl,
+      //  this.staffId,
+      // //  this.latitude,
+      // //  this.longitude,
+      // //  this.timeZone,
+      //  this.location,
+      // //  this.timezoneIdentifier,
+      // //  this.onlineStatus,
+      // //  this.authToken,
+      // //  this.fcmToken,
+      // //  this.aiPrompt,
+      //  this.currency,
+      //  this.lastSeen,
+      //  this.bvn,
+      this.createdAt,
+      this.updatedAt
+      });
 
   @override
   Map<String, dynamic> toJson() => _$TherapistToJson(this);

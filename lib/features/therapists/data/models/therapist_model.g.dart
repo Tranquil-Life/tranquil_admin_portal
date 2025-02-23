@@ -5,21 +5,23 @@ TherapistModel _$TherapistFromJson(Map<String, dynamic> json) => TherapistModel(
     fName: json['f_name'],
     lName: json['l_name'] ?? "",
     gender: json['gender'] ?? "",
-    phone: json['phone'],
+    phone: json['phone'] ?? "",
     email: json['email'],
-    birthDate: json['birth_date'],
+    birthDate: json['birth_date'] ?? "",
     emailVerifiedAt: json['email_verified_at'] != null
         ? DateTime.parse(json['email_verified_at'])
         : null,
-    blockedAt:
-        json['blocked_at'] != null ? DateTime.parse(json['blocked_at']) : null,
-    avatarUrl: json['avatar_url'],
-    audioIntro: json['audio_intro'],
-    videoIntro: json['video_intro'],
+    // blockedAt:
+    //     json['blocked_at'] != null ? DateTime.parse(json['blocked_at']) : null,
+    // avatarUrl: json['avatar_url'],
+    // audioIntro: json['audio_intro'],
+    // videoIntro: json['video_intro'],
     earnings: json['earnings'] != null
         ? EarningsModel.fromJson(
             json['earnings']) // Ensure proper deserialization
         : null,
+
+    //.........................
 
     // videoIntro: json['video_intro'],
 
@@ -57,8 +59,12 @@ TherapistModel _$TherapistFromJson(Map<String, dynamic> json) => TherapistModel(
     // currency: json['currency'],
     // lastSeen: json['last_seen'],
     // bvn: json['bvn'],
+
+    //...........................
+
     createdAt:
         json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
     updatedAt:
         json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
-    completedSessions: json['completed_sessions'] ?? 0);
+    completedSessions: json['completed_sessions'] ?? 0
+);
