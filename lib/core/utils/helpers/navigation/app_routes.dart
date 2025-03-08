@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 //TODO: Remember to Uncomment
-// import 'package:tranquil_admin_portal/features/auth/presentation/pages/sign_in.dart';
+import 'package:tranquil_admin_portal/features/auth/presentation/pages/sign_in.dart';
 // import 'package:tranquil_admin_portal/features/dashboard/presentation/pages/dashboard.dart';
-// import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/site_layout.dart';
+import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/site_layout.dart';
 // import 'package:tranquil_admin_portal/features/therapists/presentation/pages/therapists_page.dart';
 
 abstract class AppPages{
@@ -16,8 +16,8 @@ abstract class AppPages{
   static const initial = Routes.authenticationPageRoute;
 
   static final pages = [
-    // GetPage(name: Routes.rootRoute, page: () => SiteLayout()),
-    // GetPage(name: Routes.authenticationPageRoute, page: () => const SignIn()),
+    GetPage(name: Routes.rootRoute, page: () => SiteLayout()),
+    GetPage(name: Routes.authenticationPageRoute, page: () => const SignIn()),
   ];
 
   static final List<Widget> menuPages = [
