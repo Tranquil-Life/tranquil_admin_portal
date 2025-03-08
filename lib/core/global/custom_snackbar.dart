@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/utils/services/api_service.dart';
-import 'package:tranquil_admin_portal/features/auth/presentation/controllers/auth_controller.dart';
+// import 'package:tranquil_admin_portal/features/auth/presentation/controllers/auth_controller.dart';
+//TODO: Remember to Uncomment
 
 class CustomSnackBar {
   static void showSnackBar({
@@ -42,7 +43,8 @@ class CustomSnackBar {
           message: "Please change your network provider",
           backgroundColor: AppColors.red);
     } else if(errorMsg.toLowerCase().contains('unauthenticated')){
-      AuthController().signOut();
+      //TODO: Remember to Uncomment
+      // AuthController().signOut();
     } else {
       return CustomSnackBar.showSnackBar(
           context: Get.context!,
