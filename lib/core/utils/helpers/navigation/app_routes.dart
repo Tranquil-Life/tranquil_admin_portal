@@ -15,7 +15,7 @@ abstract class AppPages{
   static const initial = Routes.authenticationPageRoute;
 
   static final pages = [
-    GetPage(name: Routes.rootRoute, page: () => SiteLayout()),
+    // GetPage(name: Routes.rootRoute, page: () => SiteLayout()),
     GetPage(name: Routes.authenticationPageRoute, page: () => const SignIn()),
   ];
 
