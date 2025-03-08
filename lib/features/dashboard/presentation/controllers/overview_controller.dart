@@ -12,7 +12,7 @@ class OverviewController extends GetxController {
 
   DashboardRepoImpl dashboardRepo = DashboardRepoImpl();
 
-  var overviewIndex = 0.obs;
+  var overviewIndex = 1.obs;
   var selectedFilter = ''.obs;
 
   List<String> filters = [];
