@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
-import 'package:tranquil_admin_portal/features/auth/presentation/pages/sign_in.dart';
-import 'package:tranquil_admin_portal/features/dashboard/presentation/pages/dashboard.dart';
-import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/site_layout.dart';
-import 'package:tranquil_admin_portal/features/therapists/presentation/pages/therapists_page.dart';
+//TODO: Remember to Uncomment
+// import 'package:tranquil_admin_portal/features/auth/presentation/pages/sign_in.dart';
+// import 'package:tranquil_admin_portal/features/dashboard/presentation/pages/dashboard.dart';
+// import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/site_layout.dart';
+// import 'package:tranquil_admin_portal/features/therapists/presentation/pages/therapists_page.dart';
 
 abstract class AppPages{
   AppPages._();
@@ -15,35 +16,36 @@ abstract class AppPages{
   static const initial = Routes.authenticationPageRoute;
 
   static final pages = [
-    GetPage(name: Routes.rootRoute, page: () => SiteLayout()),
-    GetPage(name: Routes.authenticationPageRoute, page: () => const SignIn()),
+    // GetPage(name: Routes.rootRoute, page: () => SiteLayout()),
+    // GetPage(name: Routes.authenticationPageRoute, page: () => const SignIn()),
   ];
 
   static final List<Widget> menuPages = [
-    const Dashboard(),
-    const TherapistsPage(),
+    //TODO: Remember to Uncomment
+    // const Dashboard(),
+    // const TherapistsPage(),
   ];
 
 }
 
-
-Route<dynamic> generateRoute(RouteSettings settings){
-  switch (settings.name) {
-    case Routes.dashboardRoute:
-      return _getPageRoute(Dashboard());
-    case Routes.therapistsPageRoute:
-      return _getPageRoute(TherapistsPage());
-    // case clientsPageRoute:
-    //   return _getPageRoute(ClientsPage());
-    // case partnersPageRoute:
-    //   return _getPageRoute(PartnersPage());
-    // case questionnairePageRoute:
-    //   return _getPageRoute(QuestionnairePage());
-    default:
-      return _getPageRoute(Dashboard());
-
-  }
-}
+//TODO: Remember to Uncomment
+// Route<dynamic> generateRoute(RouteSettings settings){
+//   switch (settings.name) {
+//     case Routes.dashboardRoute:
+//       return _getPageRoute(Dashboard());
+//     case Routes.therapistsPageRoute:
+//       return _getPageRoute(TherapistsPage());
+//     // case clientsPageRoute:
+//     //   return _getPageRoute(ClientsPage());
+//     // case partnersPageRoute:
+//     //   return _getPageRoute(PartnersPage());
+//     // case questionnairePageRoute:
+//     //   return _getPageRoute(QuestionnairePage());
+//     default:
+//       return _getPageRoute(Dashboard());
+//
+//   }
+// }
 
 PageRoute _getPageRoute(Widget child){
   return MaterialPageRoute(builder: (context) => child);

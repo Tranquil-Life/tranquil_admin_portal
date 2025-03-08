@@ -13,7 +13,8 @@ class App extends StatelessWidget {
       initialRoute: Routes.authenticationPageRoute,
       unknownRoute: AppPages.pages[0],
       theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
-      getPages: AppPages.pages,
+      //TODO: Remember to Uncomment
+      // getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       initialBinding: AllControllerBinding(),
     );

@@ -6,6 +6,7 @@ NavigationController navigationController = NavigationController.instance;
 
 Navigator localNavigator() => Navigator(
   key: navigationController.navigatorKey,
-  onGenerateRoute: generateRoute,
+  //TODO: Remember to Uncomment
+  // onGenerateRoute: generateRoute,
   initialRoute: Routes.dashboardRoute,
 );

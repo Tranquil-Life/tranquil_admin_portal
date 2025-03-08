@@ -7,8 +7,9 @@ import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
 import 'package:tranquil_admin_portal/core/constants/endpoints.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store_keys.dart';
-import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
-import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
+//TODO: Remember to Uncomment
+// import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
+// import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
 
 abstract class ErrorCause {
   const ErrorCause();
@@ -61,10 +62,11 @@ class ApiService {
 
   Map<String, String> _getHeaders() {
     var authToken = '';
-    if (userDataStore.user.isNotEmpty &&
-        UserModel.fromJson(userDataStore.user).authToken.isNotEmpty) {
-      authToken = UserModel.fromJson(userDataStore.user).authToken;
-    }
+    //TODO: Remember to Uncomment
+    // if (userDataStore.user.isNotEmpty &&
+    //     UserModel.fromJson(userDataStore.user).authToken.isNotEmpty) {
+    //   authToken = UserModel.fromJson(userDataStore.user).authToken;
+    // }
 
     return {
       'Content-Type': 'application/json',
