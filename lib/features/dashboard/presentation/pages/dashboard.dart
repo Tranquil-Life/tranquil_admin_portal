@@ -46,7 +46,7 @@ class _DashboardState extends State<Dashboard> {
               margin: const EdgeInsets.only(top: 80, bottom: 20),
               alignment: Alignment.centerLeft,
               child: CustomText(
-                text: menuController.activeItem.value,
+                text: menuController.returnRouteName(),
                 size: 24,
                 weight: FontWeight.w600,
               )),

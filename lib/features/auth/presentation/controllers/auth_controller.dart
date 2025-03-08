@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/global/custom_snackbar.dart';
@@ -14,7 +15,6 @@ import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/si
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
-
   UserDataStore userDataStore = UserDataStore();
 
   TextEditingController emailTEC =
@@ -42,18 +42,21 @@ class AuthController extends GetxController {
         userDataStore.user = user.toJson();
 
         Get.to(SiteLayout());
+        getStore.set('isLoggedIn', true);
       }
     });
   }
 
-  Future signOut() async {
+  Future<bool> signOut() async {
+    bool signOut = false;
     Either either = await authRepo.logout();
     either.fold((l) {
-      Get.offAllNamed(Routes.authenticationPageRoute);
+      signOut = false;
+      // Get.offAllNamed(Routes.authenticationPageRoute);
     }, (r) async {
-      await getStore.clearAllData();
-
-      Get.offAllNamed(Routes.authenticationPageRoute);
+      signOut = true;
     });
+
+    return signOut;
   }
 }
