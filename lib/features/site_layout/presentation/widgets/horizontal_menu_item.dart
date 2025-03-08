@@ -32,15 +32,17 @@ class HorizontalMenuItem extends StatelessWidget {
                 : Colors.transparent,
             child: Row(
               children: [
-                Visibility(visible: menuController.isHovering(itemName!) || menuController.isActive(itemName!),
+                Visibility(
+                    visible: menuController.isHovering(itemName!) || menuController.isActive(itemName!),
+                    maintainSize: true,
+                    maintainState: true,
+                    maintainAnimation: true,
                     child: Container(
                       width: 6,
                       height: 40,
                       color: AppColors.black,
-                    ),
-                    maintainSize: true,
-                    maintainState: true,
-                    maintainAnimation: true),
+                    )
+                ),
 
                 SizedBox(width: displayWidth(context)/80),
 

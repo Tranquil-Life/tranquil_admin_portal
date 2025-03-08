@@ -23,6 +23,7 @@ class SiteLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(menuController.activePageRoute.value);
     User user = UserModel.fromJson(userDataStore.user);
     return Scaffold(
       key: scaffoldKey,
@@ -35,7 +36,7 @@ class SiteLayout extends StatelessWidget {
           child: SideMenu(),
         ),
         body: ResponsiveWidget(
-            largeScreen: LargeScreen(),
+            largeScreen: const LargeScreen(),
             smallScreen: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: localNavigator(),
