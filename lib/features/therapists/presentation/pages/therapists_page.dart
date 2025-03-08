@@ -34,14 +34,14 @@ class _TherapistsPageState extends State<TherapistsPage> {
       child: Column(
         children: [
           //Current page title
-          Container(
+          Obx(()=>Container(
               margin: const EdgeInsets.only(top: 80, bottom: 20),
               alignment: Alignment.centerLeft,
               child: CustomText(
-                text: menuController.activeItem.value,
+                text: menuController.returnRouteName(),
                 size: 24,
                 weight: FontWeight.w600,
-              )),
+              ))),
 
           Expanded(
             child: SingleChildScrollView(
