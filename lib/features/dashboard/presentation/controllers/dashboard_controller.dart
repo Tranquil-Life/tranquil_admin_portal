@@ -169,7 +169,7 @@ class DashboardController extends GetxController {
       if (data != null) {
         var moodUsage = data['mood_usage'];
         if (moodUsage is! List) {
-          moods = moodUsage.entries.map((entry) {
+          moods = moodUsage.entries.map<MoodData>((entry) {
             return MoodData(
               entry.key
                   .toString()
