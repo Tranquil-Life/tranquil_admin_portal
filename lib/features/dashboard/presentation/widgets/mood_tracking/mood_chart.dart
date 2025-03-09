@@ -14,7 +14,9 @@ class MoodChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox();
+    return SizedBox(
+      child: Text("${moods[0].name.toString()}"),
+    );
 
       // charts.SfCartesianChart(
       //   primaryXAxis: charts.CategoryAxis(

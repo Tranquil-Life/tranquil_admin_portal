@@ -55,6 +55,8 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
           );
         }
 
+        print(snapshot.data!);
+
         final List<MoodData> moods = snapshot.data!['mood_usage'];
 
         return Column(
