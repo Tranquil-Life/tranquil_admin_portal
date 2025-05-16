@@ -10,9 +10,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: Routes.authenticationPageRoute,
-      unknownRoute: AppPages.pages[0],
-      theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
+      initialRoute: AppPages.initial,
+      unknownRoute: GetPage(
+        name: '/notfound',
+        page: () => const Scaffold(body: Center(child: Text("Page Not Found"))),
+      ),      theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
+      getPages: AppPages.pages,
+
       //TODO: Remember to Uncomment
       // getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
