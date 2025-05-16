@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
+import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.dart';
 
 class MenController extends GetxController{
   static MenController instance = Get.find();
-  var activeItem = Routes.dashboardDisplayName.obs;
+  // var activeItem = Routes.dashboardDisplayName.obs;
+  var activePageRoute = getStore.get("activePageRoute").toString().obs;
   var hoverItem = "".obs;
+  get _routeName => returnRouteName();
 
-  RxInt selectedIndex = 0.obs;
-
-
-  changeActiveItemTo(String itemName) {
-    activeItem.value = itemName;
+  changeActiveItemTo(String itemName, String route) {
+    // activeItem.value = itemName;
+    activePageRoute.value = route;
+    getStore.set("activePageRoute", route);
   }
 
   onHover(String itemName) {
@@ -21,7 +23,7 @@ class MenController extends GetxController{
 
   isHovering(String itemName) => hoverItem.value == itemName;
 
-  isActive(String itemName) => activeItem.value == itemName;
+  isActive(String itemName) => returnRouteName() == itemName;
 
   Widget returnIconFor(String itemName){
     switch(itemName){
@@ -36,8 +38,21 @@ class MenController extends GetxController{
     }
   }
 
+  String returnRouteName(){
+    switch(activePageRoute.value){
+      case Routes.dashboardRoute:
+        return Routes.dashboardDisplayName;
+      case Routes.therapistsPageRoute:
+        return Routes.therapistsDisplayName;
+      case Routes.authenticationPageRoute:
+        return Routes.authenticationPageDisplayName;
+      default:
+        return Routes.dashboardDisplayName;
+    }
+  }
+
   Widget _customIcon(IconData icon, String itemName){
-    if(isActive(itemName)) return Icon(icon, size: 22, color: AppColors.green);
+    if(itemName == returnRouteName()) return Icon(icon, size: 22, color: AppColors.green);
 
     return Icon(icon, color: isHovering(itemName)
         ? AppColors.green
