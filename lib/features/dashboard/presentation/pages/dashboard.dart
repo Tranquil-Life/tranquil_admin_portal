@@ -5,6 +5,7 @@ import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/responsiveness.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/size_helpers.dart';
+import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/overview_controller.dart';
 import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
 import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
 import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menu_controller.dart';
@@ -18,7 +19,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final menuController = Get.put(MenController());
-  // final overviewController = Get.put(OverviewController());
+  final overviewController = Get.put(OverviewController());
   // final dashboardController = Get.put(DashboardController());
   // final appInstallsController = Get.put(AppInstallController());
 
