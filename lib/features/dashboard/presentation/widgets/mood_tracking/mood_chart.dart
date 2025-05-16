@@ -4,18 +4,17 @@ import 'package:flutter/material.dart';
 // import 'package:syncfusion_flutter_charts/charts.dart' as charts;
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
-import 'package:tranquil_admin_portal/features/dashboard/domain/entities/mood_data.dart';
-import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/dashboard_controller.dart';
+
 
 class MoodChart extends StatelessWidget {
-  const MoodChart({super.key, required this.moods});
+  // const MoodChart({super.key, required this.moods});
 
-  final List<MoodData> moods;
+  // final List<MoodData> moods;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: Text("${moods[0].name.toString()}"),
+      // child: Text("${moods[0].name.toString()}"),
     );
 
       // charts.SfCartesianChart(
