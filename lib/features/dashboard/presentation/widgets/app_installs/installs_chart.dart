@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tranquil_admin_portal/features/dashboard/data/models/app_installs_model.dart';
 
 class InstallsChart extends StatelessWidget {
-  final List<AppInstalls>? data;
+  // final List<AppInstalls>? data;
 
-  const InstallsChart({Key? key, this.data}) : super(key: key);
+  const InstallsChart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

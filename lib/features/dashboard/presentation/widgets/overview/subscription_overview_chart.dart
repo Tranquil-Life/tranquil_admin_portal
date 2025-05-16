@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/utils/extensions/date_time_extension.dart';
-import 'package:tranquil_admin_portal/features/dashboard/domain/entities/subscription.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/controllers/overview_controller.dart';
 
 class SubscriptionOverviewChart extends StatelessWidget {
@@ -120,7 +119,4 @@ class SubscriptionOverviewChart extends StatelessWidget {
       //       ],
       //     );
       //   });
-
-
-  }
-}
+  }}
