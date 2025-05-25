@@ -16,7 +16,6 @@ class App extends StatelessWidget {
         page: () => const Scaffold(body: Center(child: Text("Page Not Found"))),
       ),      theme: ThemeData(scaffoldBackgroundColor: AppColors.white),
       getPages: AppPages.pages,
-
       //TODO: Remember to Uncomment
       // getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,

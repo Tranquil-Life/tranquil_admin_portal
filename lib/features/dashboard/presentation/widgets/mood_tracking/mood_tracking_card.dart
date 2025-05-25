@@ -29,7 +29,7 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 6),
-                color: AppColors.grey.withOpacity(.1),
+                color: AppColors.grey[300]!.withOpacity(.1),
                 blurRadius: 12)
           ],
         ),
@@ -90,7 +90,7 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
                       alignment: Alignment.center,
                       child: CustomText(
                         text: AppStrings.userTrackingMoodMsg + " 0",
-                        color: AppColors.grey,
+                        color: AppColors.grey[300],
                         weight: FontWeight.w600,
                       ),
                     )
@@ -125,7 +125,7 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
                     alignment: Alignment.center,
                     child: CustomText(
                       text: AppStrings.userTrackingMoodMsg + " 0",
-                      color: AppColors.grey,
+                      color: AppColors.grey[300],
                       weight: FontWeight.w600,
                     ),
                   )

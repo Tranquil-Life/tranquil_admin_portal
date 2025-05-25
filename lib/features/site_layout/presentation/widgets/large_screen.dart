@@ -16,6 +16,7 @@ class LargeScreen extends StatelessWidget {
         Expanded(
           child: SideMenu(),
         ),
+        SizedBox(width: 16),
         Expanded(
           flex: 5,
           child: localNavigator()

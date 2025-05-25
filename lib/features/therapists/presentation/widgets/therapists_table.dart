@@ -89,7 +89,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
         boxShadow: [
           BoxShadow(
               offset: Offset(0, 6),
-              color: AppColors.grey.withOpacity(.1),
+              color: AppColors.grey[300]!.withOpacity(.1),
               blurRadius: 12)
         ],
       ),
@@ -107,7 +107,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
                   CustomText(
                       text: AppStrings.therapistsTableMsg,
                       size: 12,
-                      color: AppColors.grey),
+                      color: AppColors.grey[300]),
                 ],
               ),
               SizedBox(width: 60),
@@ -124,7 +124,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
                             top: 9, left: 16, bottom: 8, right: 16),
                         child: SvgPicture.asset(
                           SvgPaths.searchIcon,
-                          color: AppColors.grey,
+                          color: AppColors.grey[300],
                           // width: 24,
                           // height: 24,
                         )),
@@ -141,7 +141,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
                 width: 0.5,
                 height: 20,
                 margin: EdgeInsets.symmetric(horizontal: 17),
-                color: AppColors.grey,
+                color: AppColors.grey[300],
               ),
               SizedBox(width: 24),
               SizedBox(width: 6),
@@ -153,7 +153,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 2, vertical: 11.5),
             decoration: BoxDecoration(
-                border: Border.all(color: AppColors.grey.withOpacity(.3))),
+                border: Border.all(color: AppColors.grey[300]!.withOpacity(.3))),
             child: Table(
               columnWidths: const {
                 0: FixedColumnWidth(30), // Checkbox column
@@ -208,9 +208,7 @@ class _TherapistsTableState extends State<TherapistsTable> {
 
                 return Column(
                   children: therapists.map((e) {
-                    return
-
-                      TherapistItem(
+                    return TherapistItem(
                       item: e,
                       therapistsController: therapistsController,
                       onCheckboxChanged: (int i) {},

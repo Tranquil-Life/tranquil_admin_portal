@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
@@ -28,7 +27,7 @@ class HorizontalMenuItem extends StatelessWidget {
         child: Obx(() =>
             Container(
             color: menuController.isHovering(itemName!)
-                ? AppColors.grey.withOpacity(.1)
+                ? AppColors.grey[300]!.withOpacity(.1)
                 : Colors.transparent,
             child: Row(
               children: [
@@ -55,7 +54,7 @@ class HorizontalMenuItem extends StatelessWidget {
                   Flexible(
                       child: CustomText(
                         text: itemName!,
-                        color: menuController.isHovering(itemName!) ? AppColors.black : AppColors.grey,
+                        color: menuController.isHovering(itemName!) ? AppColors.black : AppColors.grey[300],
                         weight: FontWeight.normal,
                         size: 16,
                       ))

@@ -12,4 +12,10 @@ class SvgPaths{
   static const String emailIcon = 'assets/images/icons/email.svg';
   static const String phoneIcon = 'assets/images/icons/phone.svg';
   static const String moreIcon = 'assets/images/icons/more.svg';
+
+  /// SETTINGS NAV MENU ICONS
+  static const String activitiesIcon = 'assets/images/icons/settings/activities.svg';
+  static const String generalIcon = 'assets/images/icons/settings/general.svg';
+  static const String securityIcon = 'assets/images/icons/settings/security.svg';
+
 }

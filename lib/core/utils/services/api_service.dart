@@ -4,9 +4,15 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
+import 'package:get/get.dart' as getx;
 import 'package:tranquil_admin_portal/core/constants/endpoints.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store_keys.dart';
+import 'package:tranquil_admin_portal/core/utils/functions.dart';
+import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.dart';
+import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
+import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
+import 'package:tranquil_admin_portal/features/profile/domain/entities/user.dart';
 //TODO: Remember to Uncomment
 // import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
 // import 'package:tranquil_admin_portal/features/profile/data/repos/user_data_store.dart';
@@ -63,10 +69,10 @@ class ApiService {
   Map<String, String> _getHeaders() {
     var authToken = '';
     //TODO: Remember to Uncomment
-    // if (userDataStore.user.isNotEmpty &&
-    //     UserModel.fromJson(userDataStore.user).authToken.isNotEmpty) {
-    //   authToken = UserModel.fromJson(userDataStore.user).authToken;
-    // }
+    if (userDataStore.user.isNotEmpty &&
+        UserModel.fromJson(userDataStore.user).authToken.isNotEmpty) {
+      authToken = UserModel.fromJson(userDataStore.user).authToken;
+    }
 
     return {
       'Content-Type': 'application/json',
@@ -79,9 +85,16 @@ class ApiService {
       Either<ApiError, dynamic> eitherResponse) async {
     return eitherResponse.fold(
       (apiError) {
+        if (isLoggedOut(apiError.message!)) {
+          getx.Get.offAllNamed(Routes.authenticationPageRoute);
+          getStore.clearAllData();
+        }
+
+        print("error: ${apiError.message}");
         return Left(apiError);
       },
       (data) {
+
         return Right(data);
       },
     );
@@ -116,19 +129,68 @@ class ApiService {
     }else {
       return Left(ApiError(message: response.data['message']));
     }
-
-
   }
+  //
+  //
+  // Future<Either<ApiError, dynamic>> postReq(String url, {dynamic body}) async {
+  //   final headers = _getHeaders();
+  //
+  //   Response response = await dio.post(url, data: body, options: Options(headers: headers));
+  //
+  //   if (response.statusCode == 200 || response.statusCode == 201) {
+  //     return Right(response.data);
+  //   } else {
+  //     return Left(ApiError(message: response.data['message']));
+  //   }
+  // }
 
-  Future<Either<ApiError, dynamic>> postReq(String url, {dynamic body}) async {
+  Future<Either<ApiError, dynamic>> postReq(String url,
+      {dynamic body}) async {
     final headers = _getHeaders();
+    Response<dynamic> response;
 
-    Response response = await dio.post(url, data: body, options: Options(headers: headers));
+    bool hasMultipartFile = containsMultipartFile(body);
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
+    if (hasMultipartFile) {
+      FormData form = FormData.fromMap(body);
+
+      response = await dio.post(
+        url,
+        data: form,
+        options: Options(
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Accept': 'application/json',
+            'Authorization':
+            'Bearer ${UserModel.fromJson(userDataStore.user).authToken}',
+          },
+        ),
+      );
+    } else {
+      response = await dio.post(
+        url,
+        data: body,
+        options: Options(headers: headers),
+      );
+    }
+
+    if (response.statusCode == 200 ||
+        response.statusCode == 201 ||
+        response.statusCode == 204) {
       return Right(response.data);
     } else {
-      return Left(ApiError(message: response.data['message']));
+      return Left(
+          ApiError(message: response.data['message'] ?? "Unknown error"));
     }
   }
+
+  bool containsMultipartFile(Map<String, dynamic> data) {
+    for (var value in data.values) {
+      if (value is MultipartFile || value is List<MultipartFile>) {
+        return true; // Found a MultipartFile
+      }
+    }
+    return false; // No MultipartFile found
+  }
+
 }

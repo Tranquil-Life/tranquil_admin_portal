@@ -30,7 +30,7 @@ class _RevenueOverviewState extends State<RevenueOverview> {
           boxShadow: [
             BoxShadow(
                 offset: const Offset(0, 6),
-                color: AppColors.grey.withOpacity(.1),
+                color: AppColors.grey[300]!.withOpacity(.1),
                 blurRadius: 12)
           ],
         ),

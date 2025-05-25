@@ -18,7 +18,7 @@ class AffirmationsCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
               offset: Offset(0, 6),
-              color: AppColors.grey.withOpacity(.1),
+              color: AppColors.grey[300]!,
               blurRadius: 12
           )
         ],),
@@ -58,7 +58,7 @@ class AffirmationsCard extends StatelessWidget {
                 width: 1,
                 height: 25,
                 margin: EdgeInsets.symmetric(horizontal: 17),
-                color: AppColors.grey,
+                color: AppColors.grey[300],
               ),
 
               Column(
