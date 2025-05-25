@@ -74,4 +74,11 @@ class AppStrings{
   static const String pending = "pending";
   static const String inProgress = "in progress";
   static const String cancelled = "cancelled";
+
+  static const String generalSettingsTitle = "General settings";
+  static const String generalSettingsDesc = "Profile and account settings on your admin panel account";
+  static const String securitySettingsTitle = "Security settings";
+  static const String securitySettingsDesc = "Monitor your panel security, make security changes.";
+  static const String affirmationsSettingsTitle = "Affirmation settings";
+  static const String affirmationsSettingsDesc = "Add and edit affirmation preferences";
 }

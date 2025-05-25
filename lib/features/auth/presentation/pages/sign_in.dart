@@ -35,9 +35,9 @@ class _SignInState extends State<SignIn> {
 
               const SizedBox(height: 15),
 
-              const CustomText(
+               CustomText(
                 text: AppStrings.welcomeBackMsg,
-                color: AppColors.grey,
+                color: AppColors.grey[300],
                 size: 18,
                 weight: FontWeight.normal,
               ),

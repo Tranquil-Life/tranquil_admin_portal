@@ -9,7 +9,6 @@ class MenController extends GetxController{
   // var activeItem = Routes.dashboardDisplayName.obs;
   var activePageRoute = getStore.get("activePageRoute").toString().obs;
   var hoverItem = "".obs;
-  get _routeName => returnRouteName();
 
   changeActiveItemTo(String itemName, String route) {
     // activeItem.value = itemName;
@@ -31,6 +30,8 @@ class MenController extends GetxController{
         return _customIcon(Icons.dashboard, itemName);
       case Routes.therapistsDisplayName:
         return _customIcon(Icons.group, itemName);
+      case Routes.settingsDisplayName:
+        return _customIcon(Icons.settings, itemName);
       case Routes.authenticationPageDisplayName:
         return _customIcon(Icons.logout, itemName);
       default:
@@ -44,6 +45,8 @@ class MenController extends GetxController{
         return Routes.dashboardDisplayName;
       case Routes.therapistsPageRoute:
         return Routes.therapistsDisplayName;
+      case Routes.settingsPageRoute:
+        return Routes.settingsDisplayName;
       case Routes.authenticationPageRoute:
         return Routes.authenticationPageDisplayName;
       default:
@@ -56,7 +59,7 @@ class MenController extends GetxController{
 
     return Icon(icon, color: isHovering(itemName)
         ? AppColors.green
-        : AppColors.grey);
+        : AppColors.grey[300]);
   }
 
 }

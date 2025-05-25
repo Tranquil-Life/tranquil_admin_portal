@@ -208,7 +208,7 @@ class InfoCardsLargeScreen extends StatelessWidget {
                 iconPath: SvgPaths.personBlueIcon,
                 difference: 0,
                 trendIcon: Icons.arrow_right_alt,
-                trendIconColor: AppColors.grey,
+                trendIconColor: AppColors.grey[300],
                 onTap: () {},
               );
             }),

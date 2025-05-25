@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tranquil_admin_portal/core/global/custom_text.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/responsiveness.dart';
+import 'package:tranquil_admin_portal/features/settings/presentation/controllers/affirmation_controller.dart';
 import 'package:tranquil_admin_portal/features/site_layout/presentation/controllers/menu_controller.dart';
 import 'package:tranquil_admin_portal/features/therapists/presentation/controllers/therapists_controller.dart';
 import 'package:tranquil_admin_portal/features/therapists/presentation/widgets/therapists_info_cards_large.dart';
@@ -19,10 +20,12 @@ class TherapistsPage extends StatefulWidget {
 class _TherapistsPageState extends State<TherapistsPage> {
   final menuController = Get.put(MenController());
   final therapistController = Get.put(TherapistsController());
+  final affirmationController = Get.put(AffirmationController());
 
   @override
   void initState() {
     therapistController.getAllTherapists();
+    affirmationController.getPreferences();
 
     super.initState();
   }

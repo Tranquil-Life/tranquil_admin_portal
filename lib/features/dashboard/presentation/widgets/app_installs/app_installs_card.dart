@@ -22,7 +22,7 @@ class AppInstallsCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
               offset: const Offset(0, 6),
-              color: AppColors.grey.withOpacity(.1),
+              color: AppColors.grey[300]!,
               blurRadius: 12
           )
         ],),
@@ -32,7 +32,7 @@ class AppInstallsCard extends StatelessWidget {
           SizedBox(height: 24),
           Padding(padding: EdgeInsets.only(left: 72), child: CustomText(
             text: "A break down of the installation data of the \nTranquil Life app",
-            color: AppColors.grey,
+            color: AppColors.grey[300],
           )),
           SizedBox(height: 12),
 
@@ -47,7 +47,7 @@ class AppInstallsCard extends StatelessWidget {
                         controller.installsData[0].installs +
                             controller.installsData[1].installs}",
                     size: 12,
-                    color: AppColors.grey
+                    color: AppColors.grey[300]
                 ),
 
                 Wrap(
@@ -63,12 +63,12 @@ class AppInstallsCard extends StatelessWidget {
                         CustomText(
                             text: "Android",
                             size: 10,
-                            color: AppColors.grey
+                            color: AppColors.grey[300]
                         ),
                         CustomText(
                             text: controller.installsData[1].installs.toString(),
                             size: 10,
-                            color: AppColors.grey
+                            color: AppColors.grey[300]
                         ),
                       ],
                     )

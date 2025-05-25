@@ -39,7 +39,7 @@ class InfoCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   offset: Offset(0, 6),
-                  color: AppColors.grey.withOpacity(.1),
+                  color: AppColors.grey[300]!,
                   blurRadius: 12)
             ],
             borderRadius: BorderRadius.circular(8),
@@ -68,7 +68,7 @@ class InfoCard extends StatelessWidget {
                           child: CustomText(
                             text: "$title",
                             size: 16,
-                            color: AppColors.grey,
+                            color: AppColors.grey[300],
                           ),
                         ),
                         SvgPicture.asset("$iconPath")
@@ -87,16 +87,16 @@ class InfoCard extends StatelessWidget {
                         direction: Axis.horizontal,
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          const CustomText(
+                          CustomText(
                             text: "Last quarter",
                             size: 14,
-                            color: AppColors.grey,
+                            color: AppColors.grey[300],
                           ),
                           Icon(trendIcon, color: trendIconColor, size: 20),
                           CustomText(
                             text: "$difference",
                             size: 14,
-                            color: AppColors.grey,
+                            color: AppColors.grey[300],
                           ),
                         ],
                       ),

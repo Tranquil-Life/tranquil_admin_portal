@@ -28,20 +28,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key, Stri
       ),
       title: Row(
         children: [
-          Visibility(
-              child: ShaderMask(
-                shaderCallback: (Rect bounds) {
-                  return SweepGradient(
-                    center: Alignment.center,
-                    startAngle: 0,
-                    endAngle: 5,
-                    colors: [Colors.green, Colors.blue],
-                    tileMode: TileMode.mirror,
-                  ).createShader(bounds);
-                },
-                child: Text(AppStrings.appName)
-              ),
-              visible: true),
+          CustomText(text: AppStrings.appName,),
           Expanded(child: Container()),
 
           Stack(
@@ -70,7 +57,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key, Stri
           Container(
             width: 1,
             height: 22,
-            color: AppColors.grey,
+            color: AppColors.grey[300],
           ),
 
           SizedBox(

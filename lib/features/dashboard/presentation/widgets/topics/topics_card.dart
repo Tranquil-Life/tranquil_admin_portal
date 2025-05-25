@@ -34,7 +34,7 @@ class _TopicsCardState extends State<TopicsCard> {
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 6),
-                color: AppColors.grey.withOpacity(.1),
+                color: AppColors.grey[300]!.withOpacity(.1),
                 blurRadius: 12)
           ],
         ),
@@ -65,7 +65,7 @@ class _TopicsCardState extends State<TopicsCard> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 2, vertical: 11.5),
               decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.grey.withOpacity(.3))),
+                  border: Border.all(color: AppColors.grey[300]!.withOpacity(.3))),
               child: Table(
                 columnWidths: const {
                   0: FixedColumnWidth(50), // Fixed width for the first column
