@@ -104,3 +104,9 @@ abstract class MoodsAndJournal{
   static const countJournalEntries ='$baseUrl/api/admin/countEntries';
   static const countSharedEntries ='$baseUrl/api/admin/countSharedEntries';
 }
+
+abstract class AffirmationEndpoints{
+  static const addPreference = '$baseUrl/api/admin/createAffirmationPref';
+  static const getPreferences = '$baseUrl/api/admin/getAffirmationPrefs';
+  static const editPreference= '$baseUrl/api/admin/editAffirmationPref';
+}

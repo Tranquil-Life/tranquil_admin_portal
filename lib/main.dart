@@ -10,13 +10,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
 
-  await SentryFlutter.init(
-        (options) {
-      options.dsn = OtherConstants.sentryDSN;
-      options.tracesSampleRate = 1.0;
-      options.profilesSampleRate = 1.0;
-    },
-  );
+  // await SentryFlutter.init(
+  //       (options) {
+  //     options.dsn = OtherConstants.sentryDSN;
+  //     options.tracesSampleRate = 1.0;
+  //     options.profilesSampleRate = 1.0;
+  //   },
+  // );
 
   runApp(const App());
 

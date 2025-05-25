@@ -21,7 +21,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.white,
+      color: Colors.white,
       child: ListView(
         children: [
           if(ResponsiveWidget.isSmallScreen(context))
@@ -50,7 +50,7 @@ class SideMenu extends StatelessWidget {
             ),
 
           if(ResponsiveWidget.isSmallScreen(context))
-            Divider(color: AppColors.grey),
+            Divider(color: AppColors.grey[300]!),
 
           Column(
             mainAxisSize: MainAxisSize.min,
