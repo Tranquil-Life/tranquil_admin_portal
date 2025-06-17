@@ -11,11 +11,12 @@ abstract class Therapist extends QueryParams {
   final String? phone;
   final String? email;
   final String? birthDate;
-  final DateTime? emailVerifiedAt;
-  final DateTime? blockedAt;
+  final List? specialties;
   final String? avatarUrl;
   final String? audioIntro;
   final String? videoIntro;
+  final DateTime? emailVerifiedAt;
+  final DateTime? blockedAt;
 
   // final String? linkedinUrl;
   // final String? identityUrl;
@@ -66,6 +67,7 @@ abstract class Therapist extends QueryParams {
       this.videoIntro,
       this.earnings,
       this.completedSessions,
+      this.specialties,
 
       //  this.videoIntro,
       //  this.linkedinUrl,
@@ -96,8 +98,7 @@ abstract class Therapist extends QueryParams {
       //  this.lastSeen,
       //  this.bvn,
       this.createdAt,
-      this.updatedAt
-      });
+      this.updatedAt});
 
   @override
   Map<String, dynamic> toJson() => _$TherapistToJson(this);
