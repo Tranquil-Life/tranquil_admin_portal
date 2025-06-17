@@ -8,6 +8,7 @@ TherapistModel _$TherapistFromJson(Map<String, dynamic> json) => TherapistModel(
     phone: json['phone'] ?? "",
     email: json['email'],
     birthDate: json['birth_date'] ?? "",
+    specialties: json['specialties'] ?? [],
     emailVerifiedAt: json['email_verified_at'] != null
         ? DateTime.parse(json['email_verified_at'])
         : null,

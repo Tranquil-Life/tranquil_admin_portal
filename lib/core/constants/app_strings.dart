@@ -81,4 +81,7 @@ class AppStrings{
   static const String securitySettingsDesc = "Monitor your panel security, make security changes.";
   static const String affirmationsSettingsTitle = "Affirmation settings";
   static const String affirmationsSettingsDesc = "Add and edit affirmation preferences";
+
+  static const String online = "online";
+  static const String inSession = "in a session";
 }

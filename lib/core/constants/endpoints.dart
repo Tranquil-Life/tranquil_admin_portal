@@ -1,4 +1,6 @@
-const baseUrl = 'https://tranquil-api-staging-205081a15c84.herokuapp.com';
+const staging = 'https://tranquil-api-staging-205081a15c84.herokuapp.com';
+const production = 'https://tranquil-api.herokuapp.com';
+const baseUrl = production;
 
 //Auth related endpoints
 abstract class AuthEndpoints {
