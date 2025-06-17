@@ -28,7 +28,7 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 6),
+                offset: const Offset(0, 6),
                 color: AppColors.grey[300]!.withOpacity(.1),
                 blurRadius: 12)
           ],
@@ -134,5 +134,6 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
                 ],
               );
             }));
+
   }
 }
