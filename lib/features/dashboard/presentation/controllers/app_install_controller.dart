@@ -5,7 +5,7 @@ class AppInstallController extends GetxController{
   static AppInstallController instance = Get.find();
 
   List<AppInstalls> installsData = [
-    AppInstalls('IOS', 0),
-    AppInstalls('Android', 0),
+    AppInstalls('IOS', 69621),
+    AppInstalls('Android', 92446),
   ];
 }
