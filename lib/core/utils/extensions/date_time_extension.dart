@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 
 extension DateTimeExtension on DateTime {
   static final _dateFormat = DateFormat.yMMMd();
@@ -63,7 +64,11 @@ extension DateTimeExtension on DateTime {
         return 'Error';
     }
 
-/*   String timeAgo({DateTime? other, bool numericDates = true}) {
+
+
+  }
+
+  String timeAgo({DateTime? other, bool numericDates = true}) {
     final difference = (other ?? DateTime.now()).difference(this);
     if ((difference.inDays / 7).floor() >= 1) {
       return (numericDates) ? '1 week ago' : 'Last week';
@@ -85,6 +90,15 @@ extension DateTimeExtension on DateTime {
       return 'Just now';
     }
   }
- */
+
+  static String lastActive(DateTime other) {
+    final difference = now.difference(other);
+
+    if(difference.inMinutes <= 15){
+      return AppStrings.online;
+    }else{
+      return other.toLocal().formatDateTime;
+    }
   }
+
 }

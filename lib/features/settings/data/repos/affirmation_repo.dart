@@ -23,7 +23,6 @@ class AffirmationRepoImpl extends AffirmationRepo {
 
   @override
   Future<Either<ApiError, dynamic>> editPreference({required QueryParams params}) async{
-    print(params.toJson());
     return await catchSocketException(
             () => postReq(AffirmationEndpoints.editPreference, body: params.toJson()))
         .then((value) => handleResponse(value));

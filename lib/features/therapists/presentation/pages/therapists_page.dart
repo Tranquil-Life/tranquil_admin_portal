@@ -33,7 +33,7 @@ class _TherapistsPageState extends State<TherapistsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: 24),
+      padding: const EdgeInsets.only(right: 24),
       child: Column(
         children: [
           //Current page title

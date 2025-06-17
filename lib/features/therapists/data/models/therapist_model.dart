@@ -18,6 +18,7 @@ class TherapistModel extends Therapist {
       super.avatarUrl,
       super.audioIntro,
       super.videoIntro,
+      super.specialties,
       //  super.linkedinUrl,
       //  super.identityUrl,
       //  super.employmentStatus,
