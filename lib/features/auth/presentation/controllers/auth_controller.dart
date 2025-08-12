@@ -18,8 +18,8 @@ class AuthController extends GetxController {
   UserDataStore userDataStore = UserDataStore();
 
   TextEditingController emailTEC =
-      TextEditingController(text: 'super-admin@tranquillife.app');
-  TextEditingController passwordTEC = TextEditingController(text: 'password');
+      TextEditingController(); //super-admin@tranquillife.app
+  TextEditingController passwordTEC = TextEditingController();
 
   RxBool isPasswordVisible = false.obs;
 
