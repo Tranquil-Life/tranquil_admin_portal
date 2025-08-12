@@ -42,3 +42,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#git ssh key
+tl_ssh_key
+tl_ssh_key.pub

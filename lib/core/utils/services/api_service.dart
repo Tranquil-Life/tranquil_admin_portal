@@ -66,7 +66,7 @@ class ApiService {
     );
   }
 
-  Map<String, String> _getHeaders() {
+  Map<String, String> getHeaders() {
     var authToken = '';
     //TODO: Remember to Uncomment
     if (userDataStore.user.isNotEmpty &&
@@ -84,17 +84,8 @@ class ApiService {
   Future<Either<ApiError, dynamic>> handleResponse(
       Either<ApiError, dynamic> eitherResponse) async {
     return eitherResponse.fold(
-      (apiError) {
-        if (isLoggedOut(apiError.message!)) {
-          getx.Get.offAllNamed(Routes.authenticationPageRoute);
-          getStore.clearAllData();
-        }
-
-        print("error: ${apiError.message}");
-        return Left(apiError);
-      },
-      (data) {
-
+          (apiError) => Left(apiError),
+          (data) {
         return Right(data);
       },
     );
@@ -104,20 +95,25 @@ class ApiService {
       Function function) async {
     try {
       return await function();
-    } on DioException catch (error) {
-      var message = error.response;
-      if (!message?.data.containsKey("message")) {
-        return Left(ApiError(message: message?.data));
+    } on DioException catch (e) {
+      if (e.response != null) {
+        if(e.response!.toString().isEmpty){
+          return Left(ApiError(message: "Unexpected error occurred: $e"));
+        }else{
+          return Left(ApiError(
+              message: displayErrorMessages(e.response!.data)));
+        }
+
       } else {
-        return Left(ApiError(message: message?.data['message']));
+        return Left(ApiError(message: e.message));
       }
     } catch (e) {
-      return Left(ApiError(message: e.toString()));
+      return Left(ApiError(message: "Unexpected error occurred: $e"));
     }
   }
 
   Future<Either<ApiError, dynamic>> getReq(String url) async {
-    final headers = _getHeaders();
+    final headers = getHeaders();
     Response? response;
 
     response = await dio.get(url, options: Options(headers: headers));
@@ -146,10 +142,11 @@ class ApiService {
 
   Future<Either<ApiError, dynamic>> postReq(String url,
       {dynamic body}) async {
-    final headers = _getHeaders();
+    final headers = getHeaders();
     Response<dynamic> response;
 
     bool hasMultipartFile = containsMultipartFile(body);
+
 
     if (hasMultipartFile) {
       FormData form = FormData.fromMap(body);
@@ -172,7 +169,10 @@ class ApiService {
         data: body,
         options: Options(headers: headers),
       );
+
+      print(response.data);
     }
+
 
     if (response.statusCode == 200 ||
         response.statusCode == 201 ||
@@ -192,5 +192,34 @@ class ApiService {
     }
     return false; // No MultipartFile found
   }
+
+  String displayErrorMessages(Map<String, dynamic> jsonResponse) {
+    // Check if the response contains the "errors" key
+    if (jsonResponse.containsKey('errors') && jsonResponse['errors'] != null) {
+      List<String> allErrorMessages = [];
+      Map<String, dynamic> errors = {};
+
+      if(jsonResponse['errors'] is Map<String, dynamic>){
+        errors = jsonResponse['errors'];
+      }else if(jsonResponse['errors'] is List){
+        allErrorMessages = List<String>.from(jsonResponse['errors']);
+      }
+
+      // Flatten the error messages into a single list
+      errors.forEach((field, messages) {
+        for (var message in messages) {
+          allErrorMessages.add(message);
+        }
+      });
+
+      // Join all error messages into a single string
+      String errorString = allErrorMessages.join(", ");
+
+      return errorString;
+    } else {
+      return jsonResponse['message'].toString();
+    }
+  }
+
 
 }

@@ -59,6 +59,7 @@ class SideMenu extends StatelessWidget {
                 itemName: item.name,
                 onTap: () async{
                   if(item.route == Routes.authenticationPageRoute){
+
                    bool signOut = await authController.signOut();
                    menController.changeActiveItemTo(item.name, item.route);
 
