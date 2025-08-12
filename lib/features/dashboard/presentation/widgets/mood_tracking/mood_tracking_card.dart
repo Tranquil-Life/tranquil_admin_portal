@@ -28,7 +28,7 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 6),
+                offset: const Offset(0, 6),
                 color: AppColors.grey[300]!.withOpacity(.1),
                 blurRadius: 12)
           ],
@@ -60,8 +60,10 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
 
               Map data = snapshot.data!;
               List<MoodData> moods;
+              int numOfUsers;
               if (data.isNotEmpty){
                 moods = snapshot.data!['mood_usage'];
+                numOfUsers = snapshot.data!['number_of_users'];
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -89,7 +91,7 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
                     Align(
                       alignment: Alignment.center,
                       child: CustomText(
-                        text: AppStrings.userTrackingMoodMsg + " 0",
+                        text: "${AppStrings.userTrackingMoodMsg} $numOfUsers",
                         color: AppColors.grey[300],
                         weight: FontWeight.w600,
                       ),
@@ -132,5 +134,6 @@ class _MoodTrackingCardState extends State<MoodTrackingCard> {
                 ],
               );
             }));
+
   }
 }

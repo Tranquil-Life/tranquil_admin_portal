@@ -21,7 +21,7 @@ class SideMenuItem extends StatelessWidget {
     }else{
       return Column(
         children: [
-          itemName == AppStrings.logOutTitle ? SizedBox(height: displayHeight(context)/2,) : SizedBox(),
+          itemName == AppStrings.logOutTitle ? SizedBox(height: displayHeight(context)/2) : const SizedBox(),
           HorizontalMenuItem(itemName: itemName!, onTap: onTap!)
         ],
       );
