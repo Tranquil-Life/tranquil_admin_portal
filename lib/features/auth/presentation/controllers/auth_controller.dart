@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:tranquil_admin_portal/core/constants/endpoints.dart';
 import 'package:tranquil_admin_portal/core/constants/theme/app_colors.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/global/custom_snackbar.dart';
-import 'package:tranquil_admin_portal/core/utils/helpers/navigation/app_routes.dart';
+import 'package:tranquil_admin_portal/core/utils/services/api_service.dart';
 import 'package:tranquil_admin_portal/features/auth/data/repos/auth_repo.dart';
 import 'package:tranquil_admin_portal/features/auth/domain/entities/login_data.dart';
 import 'package:tranquil_admin_portal/features/profile/data/models/user_model.dart';
@@ -43,19 +44,27 @@ class AuthController extends GetxController {
 
         Get.to(SiteLayout());
         getStore.set('isLoggedIn', true);
+
+        emailTEC.clear();
+        passwordTEC.clear();
       }
     });
   }
 
   Future<bool> signOut() async {
     bool signOut = false;
-    Either either = await authRepo.logout();
-    either.fold((l) {
-      signOut = false;
-      // Get.offAllNamed(Routes.authenticationPageRoute);
-    }, (r) async {
+
+    var response = await ApiService().dio.post(
+      "$baseUrl/api/admin/logOut",
+      data: null,
+      options: Options(headers: ApiService().getHeaders()),
+    );
+
+    if(response.statusCode == 200){
       signOut = true;
-    });
+    }else{
+      signOut = false;
+    }
 
     return signOut;
   }
