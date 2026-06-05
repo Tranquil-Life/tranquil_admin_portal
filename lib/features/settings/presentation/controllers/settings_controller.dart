@@ -7,7 +7,7 @@ import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/navigation/settings_routes.dart';
 
 class SettingsController extends GetxController {
-  static SettingsController instance = Get.find();
+  static SettingsController get instance => Get.find();
 
   var activeItem = SettingsRoutes.affirmationsDisplayName.obs;
   final GlobalKey<NavigatorState> settingsNavigatorKey = GlobalKey();

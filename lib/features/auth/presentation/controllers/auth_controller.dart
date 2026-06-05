@@ -16,7 +16,8 @@ import 'package:tranquil_admin_portal/features/profile/domain/entities/user.dart
 import 'package:tranquil_admin_portal/features/site_layout/presentation/pages/site_layout.dart';
 
 class AuthController extends GetxController {
-  static AuthController instance = Get.find();
+  static AuthController get instance => Get.find();
+
   UserDataStore userDataStore = UserDataStore();
 
   TextEditingController emailTEC =

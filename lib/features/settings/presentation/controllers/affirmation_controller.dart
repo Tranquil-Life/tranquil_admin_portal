@@ -15,7 +15,7 @@ import 'package:tranquil_admin_portal/features/settings/domain/entities/affirmat
 import 'package:dio/dio.dart' as dio;
 
 class AffirmationController extends GetxController {
-  static AffirmationController instance = Get.find();
+  static AffirmationController get instance => Get.find();
 
   AffirmationRepoImpl affirmationRepo = AffirmationRepoImpl();
 

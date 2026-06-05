@@ -4,7 +4,7 @@ import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/global/custom_snackbar.dart';
 
 class OverviewController extends GetxController {
-  static OverviewController instance = Get.find();
+  static OverviewController get instance => Get.find();
 
   // DashboardRepoImpl dashboardRepo = DashboardRepoImpl();
 

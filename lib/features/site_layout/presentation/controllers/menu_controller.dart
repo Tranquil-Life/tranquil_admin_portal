@@ -30,6 +30,8 @@ class MenController extends GetxController{
         return _customIcon(Icons.dashboard, itemName);
       case Routes.therapistsDisplayName:
         return _customIcon(Icons.group, itemName);
+      case Routes.applicationsDisplayName:
+        return _customIcon(Icons.assignment, itemName);
       case Routes.settingsDisplayName:
         return _customIcon(Icons.settings, itemName);
       case Routes.authenticationPageDisplayName:
@@ -45,6 +47,8 @@ class MenController extends GetxController{
         return Routes.dashboardDisplayName;
       case Routes.therapistsPageRoute:
         return Routes.therapistsDisplayName;
+      case Routes.applicationsPageRoute:
+        return Routes.applicationsDisplayName;
       case Routes.settingsPageRoute:
         return Routes.settingsDisplayName;
       case Routes.authenticationPageRoute:

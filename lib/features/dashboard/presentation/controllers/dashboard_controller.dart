@@ -8,7 +8,7 @@ import 'package:tranquil_admin_portal/features/dashboard/domain/entities/mood_da
 import 'package:tranquil_admin_portal/features/therapists/presentation/controllers/therapists_controller.dart';
 
 class DashboardController extends GetxController {
-  static DashboardController instance = Get.find();
+  static DashboardController get instance => Get.find();
 
   DashboardRepoImpl dashboardRepo = DashboardRepoImpl();
 

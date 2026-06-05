@@ -8,7 +8,7 @@ import 'package:tranquil_admin_portal/features/therapists/data/repos/therapist_r
 import 'package:tranquil_admin_portal/features/therapists/domain/entities/therapist.dart';
 
 class TherapistsController extends GetxController {
-  static TherapistsController instance = Get.find();
+  static TherapistsController get instance => Get.find();
 
   TherapistRepoImpl therapistRepo = TherapistRepoImpl();
 

@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:tranquil_admin_portal/core/constants/app_strings.dart';
 import 'package:tranquil_admin_portal/core/data/local/get_store.dart';
 import 'package:tranquil_admin_portal/core/utils/helpers/navigation/auth_middleware.dart';
+import 'package:tranquil_admin_portal/features/applications/presentation/pages/applications_page.dart';
 import 'package:tranquil_admin_portal/features/auth/presentation/pages/sign_in.dart';
 import 'package:tranquil_admin_portal/features/dashboard/presentation/pages/dashboard.dart';
 import 'package:tranquil_admin_portal/features/settings/presentation/pages/settings_page.dart';
@@ -31,6 +32,7 @@ abstract class AppPages{
   static final List<Widget> menuPages = [
     const Dashboard(),
     const TherapistsPage(),
+    const ApplicationsPage(),
     const SettingsPage(),
   ];
 
@@ -45,8 +47,8 @@ Route<dynamic> generateRoute(RouteSettings settings){
       return _getPageRoute(TherapistsPage());
     case Routes.settingsPageRoute:
       return _getPageRoute(SettingsPage());
-    // case partnersPageRoute:
-    //   return _getPageRoute(PartnersPage());
+    case Routes.applicationsPageRoute:
+      return _getPageRoute(ApplicationsPage());
     // case questionnairePageRoute:
     //   return _getPageRoute(QuestionnairePage());
     default:
@@ -72,6 +74,9 @@ abstract class Routes{
   static const settingsDisplayName = AppStrings.settingsTitle;
   static const settingsPageRoute = "/settings";
 
+  static const applicationsDisplayName = AppStrings.applicationsTitle;
+  static const applicationsPageRoute = "/applications";
+
   static const authenticationPageDisplayName = AppStrings.logOutTitle;
   static const authenticationPageRoute = "/auth";
 
@@ -89,6 +94,7 @@ List<MenuItem> sideMenuItemRoutes =
 [
   MenuItem(Routes.dashboardDisplayName, Routes.dashboardRoute),
   MenuItem(Routes.therapistsDisplayName, Routes.therapistsPageRoute),
+  MenuItem(Routes.applicationsDisplayName, Routes.applicationsPageRoute),
   MenuItem(Routes.settingsDisplayName, Routes.settingsPageRoute),
   MenuItem(Routes.authenticationPageDisplayName, Routes.authenticationPageRoute)
 ];

@@ -15,6 +15,7 @@ class AppStrings{
   static const String meetingsTitle = "Meetings";
   static const String usersTitle = "Users";
   static const String therapistsTitle = "Therapists";
+  static const String applicationsTitle = "Applications";
   static const String businessesTitle = "Businesses";
   static const String analyticsTitle = "Analytics";
   static const String settingsTitle = "Settings";

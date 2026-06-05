@@ -1,6 +1,6 @@
 const staging = 'https://tranquil-api-staging-205081a15c84.herokuapp.com';
 const production = 'https://tranquil-api.herokuapp.com';
-const baseUrl = production;
+const baseUrl = staging;
 
 //Auth related endpoints
 abstract class AuthEndpoints {
@@ -22,8 +22,7 @@ abstract class UserEndpoints {
   static countRegisteredUsers({int lastQuarter = 0}) =>
       '$baseUrl/api/admin/registeredUsers?last_quarter=$lastQuarter';
 
-  static countActiveAccounts() =>
-      '$baseUrl/api/admin/activeAccountsCount';
+  static countActiveAccounts() => '$baseUrl/api/admin/activeAccountsCount';
 }
 
 abstract class BusinessEndpoints {
@@ -57,6 +56,20 @@ abstract class MeetingsEndpoints {
       '$baseUrl/api/admin/sessionsCount?status=$status&last_quarter=$lastQuarter';
 }
 
+abstract class ApplicationEndpoints {
+  static getApplications({int page = 1}) =>
+      '$baseUrl/api/admin/therapist-applications?page=$page';
+
+  static approveApplication({int? applicationId}) =>
+      '$baseUrl/api/therapist-applications/$applicationId/approve';
+
+  static rejectApplication({int? applicationId}) =>
+      '$baseUrl/api/therapist-applications/$applicationId/reject';
+
+  static markNeedsReview({int? applicationId}) =>
+      '$baseUrl/api/therapist-applications/$applicationId/needs-review';
+}
+
 abstract class TransactionsEndpoints {
   // static String totalRevenue(
   //         {int lastQuarter = 0,
@@ -88,7 +101,8 @@ abstract class SuggestionEndpoints {
 abstract class SubscriptionEndpoints {
   static const addType = '$baseUrl/api/admin/addSubscriptionType';
   static const subscriptions = '$baseUrl/api/admin/subscriptions';
-  static const subsPercentChange = '$baseUrl/api/admin/subscriptionPercentChange';
+  static const subsPercentChange =
+      '$baseUrl/api/admin/subscriptionPercentChange';
 
   static editType(int id) => '$baseUrl/api/admin/editSubscriptionType/$id';
 }
@@ -101,14 +115,14 @@ abstract class Permissions {
       '$baseUrl/api/admin/roles/permissions/$roleId/all';
 }
 
-abstract class MoodsAndJournal{
-  static const mostTrackedMoods ='$baseUrl/api/admin/moodsTracked';
-  static const countJournalEntries ='$baseUrl/api/admin/countEntries';
-  static const countSharedEntries ='$baseUrl/api/admin/countSharedEntries';
+abstract class MoodsAndJournal {
+  static const mostTrackedMoods = '$baseUrl/api/admin/moodsTracked';
+  static const countJournalEntries = '$baseUrl/api/admin/countEntries';
+  static const countSharedEntries = '$baseUrl/api/admin/countSharedEntries';
 }
 
-abstract class AffirmationEndpoints{
+abstract class AffirmationEndpoints {
   static const addPreference = '$baseUrl/api/admin/createAffirmationPref';
   static const getPreferences = '$baseUrl/api/admin/getAffirmationPrefs';
-  static const editPreference= '$baseUrl/api/admin/editAffirmationPref';
+  static const editPreference = '$baseUrl/api/admin/editAffirmationPref';
 }
